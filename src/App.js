@@ -3,6 +3,7 @@ import React from 'react';
 import Navbar from './components/navbar/Navbar';
 import Slider from './Homepage/Slider/Slider';
 import Categories from './Homepage/Categories/Categories';
+import Offer from './Homepage/Offer/Offer';
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
       <Navbar />
       <Categories></Categories>
       <Slider />
+      <Offer></Offer>
       
     </div>
   );

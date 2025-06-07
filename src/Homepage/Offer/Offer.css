@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,100..900;1,100..900&family=SUSE:wght@100..800&display=swap');
+
+.offerContainer {
+  margin: 5vh auto;
+  padding: 2vh 5vw;
+  background-color: #fff;
+  font-family: "SUSE", sans-serif;
+  border-radius: 8px;
+  max-width: 900px;
+}
+
+.heading {
+  font-size: 1.8rem;
+  color: #252422;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+/* Pinterest-style masonry with CSS columns */
+.masonry {
+  column-count: 4;
+  column-gap: 20px;
+  width: 100%;
+}
+
+.card {
+  display: inline-block;
+  background-color: #eb5e28;
+  border: 1.5px solid #eb5e28;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  width: 100%;
+  box-sizing: border-box;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  color: whitesmoke;
+}
+
+.card:hover {
+  background-color: #f9f9f9;
+  transform: translateY(-4px);
+  color: #000;
+}
+
+.card img {
+  width: 100%;
+  border-radius: 6px 6px 0 0;
+  object-fit: cover;
+  height: auto;
+}
+
+.card p {
+  margin: 10px 0 4px;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.card span {
+  font-size: 13px;
+  color: #555;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.Img1 {
+  height: 60vh;
+  width: 27vw;
+  margin-top: 20vh;
+  margin-left: -20vh;
+  border-radius: 10px;
+  display: inline-block;
+}
+
+/* Responsive: 3 columns for medium screens */
+@media (max-width: 1024px) {
+  .masonry {
+    column-count: 3;
+  }
+
+  .Img1 {
+    width: 40vw;
+    margin-left: 0;
+  }
+}
+
+/* Responsive: 2 columns for tablets */
+@media (max-width: 768px) {
+  .masonry {
+    column-count: 2;
+  }
+
+  .Img1 {
+    width: 60vw;
+    height: auto;
+    margin-left: 0;
+    margin-top: 5vh;
+  }
+}
+
+/* Responsive: 1 column for mobile */
+@media (max-width: 480px) {
+  .masonry {
+    column-count: 1;
+  }
+
+  .Img1 {
+    width: 90vw;
+    height: auto;
+    margin-left: 0;
+    margin-top: 3vh;
+  }
+}

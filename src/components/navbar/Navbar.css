@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,100..900;1,100..900&family=SUSE:wght@100..800&display=swap');
 
-
 /* Top sale bar */
 .nav1 {
   display: flex;
@@ -25,6 +24,7 @@
   gap: 12px;
   height: 6vh;
   font-family: "SUSE";
+  flex-wrap: wrap;
 }
 
 /* Brand/logo */
@@ -47,9 +47,10 @@
 }
 
 /* Common nav button style (Login, Cart, Settings) */
-.nav-btn,.menu-item {
-  background-color: #252422;  /* default button bg */
-  color: #ccc5b9;             /* default text color */
+.nav-btn,
+.menu-item {
+  background-color: #252422;
+  color: #ccc5b9;
   padding: 8px 14px;
   border: none;
   border-radius: 25px;
@@ -60,15 +61,17 @@
   text-decoration: none;
   font-weight: bold;
   width: 6vw;
+  text-align: center;
 }
 
+/* Hover effect */
 .nav-btn:hover,
 .menu-item:hover {
-  background-color: #ccc5b9;  /* hover bg */
-  color: #252422;             /* hover text color */
+  background-color: #ccc5b9;
+  color: #252422;
 }
 
-/* Remove bullets on menu and dropdown list */
+/* Remove bullets */
 .menu,
 .menu li {
   list-style: none;
@@ -85,7 +88,7 @@
   background-color: white;
   color: black;
   min-width: 200px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   z-index: 100;
   border-radius: 4px;
 }
@@ -104,16 +107,74 @@
   display: block;
 }
 
-/* Remove underline on Cart and Settings links */
+/* Remove underline on links */
 .nav2 a {
   text-decoration: none;
   color: inherit;
 }
 
-/* Layout tweaks */
+/* Flex fixes */
 .nav2 .menu,
 .nav2 a {
   display: flex;
   align-items: center;
   margin-left: 8px;
+}
+
+/* ✅ Responsive styles */
+@media (max-width: 1024px) {
+  .nav2 {
+    flex-wrap: wrap;
+    gap: 10px;
+    height: auto;
+    justify-content: center;
+  }
+
+  .nav2 strong {
+    margin-bottom: 10px;
+  }
+
+  .nav2 input[type="text"] {
+    width: 80%;
+    max-width: none;
+  }
+
+  .nav-btn {
+    width: auto;
+    padding: 8px 12px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav2 {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+  }
+
+  .nav2 input[type="text"] {
+    width: 100%;
+    font-size: 0.9rem;
+  }
+
+  .nav-btn {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav1 {
+    font-size: 0.8rem;
+  }
+
+  .nav2 strong {
+    font-size: 1.2rem;
+  }
+
+  .nav-btn {
+    font-size: 0.85rem;
+  }
 }
