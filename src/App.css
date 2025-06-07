@@ -1,0 +1,6 @@
+/* In your global CSS file */
+body {
+  background-color: rgb(173, 172, 172);
+  margin: 0; /* optional: remove default body margin */
+  padding: 0; /* optional */
+}
