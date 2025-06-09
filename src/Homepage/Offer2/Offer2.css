@@ -32,13 +32,16 @@
 }
 
 .offer-image {
-  height: 300px;
+  height: 340px; /* Increased height */
   object-fit: contain;
-  border-radius: 8px;
-  transition: transform 0.3s ease;
+  border-radius: 10px;
+  border: 2px solid #d3d3d3; /* Visible light gray border */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background-color: #fefefe; /* Optional: adds subtle contrast behind transparent images */
 }
 
 .offer-image:hover {
   transform: scale(1.05);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
   cursor: pointer;
 }
