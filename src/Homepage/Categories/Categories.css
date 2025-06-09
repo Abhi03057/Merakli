@@ -18,7 +18,7 @@
   margin: 8px;
   text-align: center;
   font-family: 'Segoe UI', sans-serif;
-  font-size: 1rem; /* Fixed size */
+  font-size: 1rem;
   color: #333;
   padding: 8px;
   border-radius: 8px;
@@ -32,8 +32,8 @@
   height: 80px;
   margin-bottom: 6px;
   transition: transform 0.3s ease;
-  background-color: transparent; /* Ensures uniform bg */
-  border-radius: 50%; /* Optional: to hide corners on jpg */
+  background-color: transparent;
+  border-radius: 50%;
 }
 
 .category-card:hover {
@@ -41,7 +41,22 @@
   color: white;
 }
 
-/* Optional: make sure image doesn't get affected */
 .category-card:hover img {
-  transform: scale(1.05); /* Slight zoom on hover if you like */
+  transform: scale(1.05);
+}
+
+/* Reset link default styling */
+.container a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* ✅ Pill effect on all category text during hover */
+.category-card:hover p {
+  background-color: whitesmoke;
+  color: #eb5e28;
+  padding: 2px 8px;
+  border-radius: 6px;
+  transition: 0.3s ease;
+  display: inline-block;
 }

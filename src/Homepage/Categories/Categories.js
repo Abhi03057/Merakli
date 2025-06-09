@@ -1,5 +1,6 @@
 import React from 'react';
 import "./Categories.css";
+import { Link } from 'react-router-dom';
 
 const categories = [
   {
@@ -13,6 +14,7 @@ const categories = [
   {
     name: "Fashion",
     image: "https://rukminim2.flixcart.com/fk-p-flap/128/128/image/0d75b34f7d8fbcb3.png?q=100",
+    link: "/fashion",
   },
   {
     name: "Electronics",
@@ -31,12 +33,22 @@ const categories = [
 function Categories() {
   return (
     <div className="container">
-      {categories.map((category, index) => (
-        <div className="category-card" key={index}>
-          <img src={category.image} alt={category.name} />
-          <p>{category.name}</p>
-        </div>
-      ))}
+      {categories.map((category, index) => {
+        const cardContent = (
+          <div className="category-card">
+            <img src={category.image} alt={category.name} />
+            <p>{category.name}</p>
+          </div>
+        );
+
+        return category.link ? (
+          <Link to={category.link} key={index}>
+            {cardContent}
+          </Link>
+        ) : (
+          <div key={index}>{cardContent}</div>
+        );
+      })}
     </div>
   );
 }

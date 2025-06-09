@@ -23,7 +23,7 @@ const Offers = [
     title: "Skincare"
   },
   {
-    img: "https://rukminim2.flixcart.com/image/96/96/xif0q/sandal/g/d/f/6-gd602-39-picktoes-pink-original-imah3j5yf6hqamsg.jpeg?q=60",
+    img: "https://i.pinimg.com/originals/74/e7/6b/74e76bf3a5cd26b1f313ab961856091a.jpg",
     title: "Women's Flats & Heels"
   },
   {
@@ -57,7 +57,7 @@ function Offer() {
           <div key={index} className="card">
             <img src={offer.img} alt={offer.title} />
             <p>{offer.title}</p>
-            <span>Under ₹499</span>
+            <span className='Heading'>Under ₹499</span>
           </div>
         ))}
         
