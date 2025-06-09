@@ -1,6 +1,21 @@
-/* In your global CSS file */
 body {
-  background-color: rgb(173, 172, 172);
-  margin: 0; /* optional: remove default body margin */
-  padding: 0; /* optional */
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, #d4d4d4, #a9a9a9);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-family: 'Open Sans', sans-serif;
+}
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  pointer-events: none;
+  background-image: url('https://www.transparenttextures.com/patterns/gray-floral.png'); /* or use a subtle dot/noise */
+  opacity: 0.05;
+  z-index: -1;
 }

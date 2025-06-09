@@ -3,23 +3,23 @@ import "./Offer.css";
 
 const Offers = [
   {
-    img: "https://rukminim2.flixcart.com/image/96/96/xif0q/sari/9/y/y/free-3991s495-samah-unstitched-original-imah7fy848gvmzf6.jpeg?q=60",
+    img: "https://imgeng.jagran.com/webstories/91438/alia-bhatt-s-met-gala-2024-princess-look--6--1715062208.jpeg",
     title: "Bestselling Sarees"
   },
   {
-    img: "https://rukminim2.flixcart.com/image/96/96/xif0q/dress/w/b/2/-original-imaguzaajncp3ggb.jpeg?q=60",
+    img: "https://rukminim1.flixcart.com/image/612/612/xif0q/dress/d/j/n/xl-ttce000155-tokyo-talkies-original-imagp22cygxdh2zg.jpeg?q=70",
     title: "Tokyo Talkies & Sassafras"
   },
   {
-    img: "https://rukminim2.flixcart.com/image/96/96/xif0q/shoe/o/9/a/8-dark-pink-fws-15-8-footox-dark-pink-original-imagqf6veu6rwyvy.jpeg?q=60",
+    img: "https://img.kwcdn.com/product/1dec4a1170/5162f26f-308e-4081-8604-e86edbc4ffe1_800x800.jpeg.a.jpg",
     title: "Women's Sports Shoes"
   },
   {
-    img: "https://rukminim2.flixcart.com/image/96/96/xif0q/shoe/j/9/o/-original-imah4qrfhtfbdj4h.jpeg?q=60",
+    img: "https://tse1.mm.bing.net/th?id=OIP.oCm3s5_IOWcGyFn_5R_H0gHaEK&pid=Api&P=0&h=180",
     title: "PUMA & Adidas"
   },
   {
-    img: "https://rukminim2.flixcart.com/image/96/96/xif0q/moisturizer-cream/o/m/h/-original-imagzzm598qvyybx.jpeg?q=60",
+    img: "https://img.freepik.com/premium-photo/natural-skincare-cosmetics-bottles-products-with-green-tropical-plant-leaves-flowers-vertical-background-with-copy-space-beauty-skin-care-herbal-organic-products-ai-generative-content_70898-9941.jpg",
     title: "Skincare"
   },
   {
@@ -27,16 +27,24 @@ const Offers = [
     title: "Women's Flats & Heels"
   },
   {
-    img: "https://rukminim2.flixcart.com/image/96/96/xif0q/shirt/x/m/o/-original-imah77ntswmmb49w.jpeg?q=60",
+    img: "https://globalprimenews.com/wp-content/uploads/2023/08/IMG-20230826-WA0012.jpg",
     title: "USPA & Levi's"
   },
   {
-    img: "https://rukminim2.flixcart.com/fk-p-flap/96/96/image/5cb84c6283476d96.jpg?q=60",
+    img: "https://cms-cdn.thesolesupplier.co.uk/2020/11/bf-2.jpg.webp",
     title: "Hottest Steals"
   },
   {
-    img: "https://rukminim2.flixcart.com/image/96/96/kf2v3ww0/lipstick/q/f/f/6-fab-5-5-in-1-lipstick-renee-original-imafvhp2tuft7rxd.jpeg?q=60",
+    img: "https://cdn.zeptonow.com/production/tr:w-600,ar-1021-1021,pr-true,f-auto,q-80/cms/product_variant/c51051f0-c22e-448d-9324-f2f7177d5ba7.jpeg",
     title: "Renee & Sugar"
+  },
+  {
+    img: "https://thenewkits.com/wp-content/uploads/2021/03/ed7317fb-1024x1024.jpg",
+    title: "Sport Accesories"
+  },
+  {
+    img: "https://www.jaxtr.com/wp-content/uploads/2020/06/01-original-square-IMG_3914_1024x1024_74dc6460-ef6f-4084-8d02-8b4244c89ab7.jpg",
+    title: "Electronic Accesories"
   }
 ];
 
@@ -52,7 +60,7 @@ function Offer() {
             <span>Under ₹499</span>
           </div>
         ))}
-        <img className='Img1' src="https://rukminim2.flixcart.com/www/1060/1460/promos/26/09/2023/6c3c5fe2-c236-4fa2-8d97-595e1e01da01.jpg?q=60" alt="" />
+        
       </div>
     </div>
   );

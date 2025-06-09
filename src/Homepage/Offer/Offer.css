@@ -26,17 +26,18 @@
 .card {
   display: inline-block;
   background-color: #eb5e28;
-  border: 1.5px solid #eb5e28;
-  border-radius: 6px;
+  border: 3px solid #eb5e28; /* Increased from 1.5px to 3px */
+  border-radius: 8px;
   margin-bottom: 20px;
   width: 100%;
   box-sizing: border-box;
   text-align: center;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08); /* Slightly deeper shadow */
   color: whitesmoke;
 }
+
 
 .card:hover {
   background-color: #f9f9f9;
@@ -64,14 +65,7 @@
   display: block;
 }
 
-.Img1 {
-  height: 60vh;
-  width: 27vw;
-  margin-top: 20vh;
-  margin-left: -20vh;
-  border-radius: 10px;
-  display: inline-block;
-}
+
 
 /* Responsive: 3 columns for medium screens */
 @media (max-width: 1024px) {
@@ -79,10 +73,7 @@
     column-count: 3;
   }
 
-  .Img1 {
-    width: 40vw;
-    margin-left: 0;
-  }
+  
 }
 
 /* Responsive: 2 columns for tablets */
@@ -91,12 +82,7 @@
     column-count: 2;
   }
 
-  .Img1 {
-    width: 60vw;
-    height: auto;
-    margin-left: 0;
-    margin-top: 5vh;
-  }
+  
 }
 
 /* Responsive: 1 column for mobile */
@@ -105,10 +91,5 @@
     column-count: 1;
   }
 
-  .Img1 {
-    width: 90vw;
-    height: auto;
-    margin-left: 0;
-    margin-top: 3vh;
-  }
+  
 }

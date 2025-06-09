@@ -5,6 +5,7 @@ import Slider from './Homepage/Slider/Slider';
 import Categories from './Homepage/Categories/Categories';
 import Offer from './Homepage/Offer/Offer';
 import Offer2 from './Homepage/Offer2/Offer2';
+import Footer from './Homepage/Footer/Footer';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <Slider />
       <Offer></Offer>
       <Offer2></Offer2>
+      <Footer></Footer>
       
     </div>
   );
