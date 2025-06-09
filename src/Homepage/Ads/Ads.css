@@ -1,0 +1,46 @@
+.ads-wrapper {
+  background-color: #ffffff;
+  padding: 4vh 5vw;
+  margin: 5vh auto;
+  max-width: 1200px;
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  
+}
+
+.ads-heading {
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 30px;
+  font-family: 'SUSE', sans-serif;
+  color: #eb5e28;
+}
+
+.ads-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.ad-image {
+  width: 100%;
+  max-width: 550px;
+  height: auto;
+  border-radius: 10px;
+  object-fit: cover;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.ad-image:hover {
+  transform: scale(1.03);
+  cursor: pointer;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .ad-image {
+    max-width: 100%;
+  }
+}
