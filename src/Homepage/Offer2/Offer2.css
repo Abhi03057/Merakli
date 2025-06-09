@@ -1,0 +1,44 @@
+.offer2-wrapper {
+  margin: 5vh auto;
+  padding: 4vh 5vw;
+  background: linear-gradient(135deg, #ffffff, #f9f4ef);
+  font-family: "SUSE", sans-serif;
+  border-radius: 12px;
+  max-width: 1000px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+.offer2-container {
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 3vh 2vw;
+  text-align: center;
+}
+
+.offer2-heading {
+  font-size: 2rem;
+  color: #eb5e28;
+  margin-bottom: 2vh;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.offer2-images {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.offer-image {
+  height: 300px;
+  object-fit: contain;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+}
+
+.offer-image:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+}
