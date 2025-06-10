@@ -10,6 +10,7 @@ import Offer2 from './Homepage/Offer2/Offer2';
 import Footer from './Homepage/Footer/Footer';
 import Ads from './Homepage/Ads/Ads';
 import Cloths from './Clothing/Cloths/Cloths'; // Adjust path if needed
+import Mobiles from './Mobiles/Mobiles';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
           </>
         } />
         <Route path="/fashion" element={<Cloths />} />
+        <Route path="/mobiles" element={<Mobiles/>} />
       </Routes>
     </Router>
   );
