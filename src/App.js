@@ -9,8 +9,12 @@ import Offer from './Homepage/Offer/Offer';
 import Offer2 from './Homepage/Offer2/Offer2';
 import Footer from './Homepage/Footer/Footer';
 import Ads from './Homepage/Ads/Ads';
-import Cloths from './Clothing/Cloths/Cloths'; // Adjust path if needed
+import Cloths from './Clothing/Cloths/Cloths'; 
 import Mobiles from './Mobiles/Mobiles';
+import Groceries from './Groceries/Groceries';
+import Electronics from './Electronics/Electronics';
+import Home from './Home/Home';
+import Appliances from './Appliances/Appliances';
 
 function App() {
   return (
@@ -29,6 +33,10 @@ function App() {
         } />
         <Route path="/fashion" element={<Cloths />} />
         <Route path="/mobiles" element={<Mobiles/>} />
+        <Route path="/grocery" element={<Groceries/>} />
+        <Route path="/electronics" element={<Electronics/>} />
+        <Route path="/home" element={<Home/>} />
+         <Route path="/appliances" element={<Appliances/>} />
       </Routes>
     </Router>
   );

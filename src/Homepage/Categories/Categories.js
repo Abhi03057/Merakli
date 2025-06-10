@@ -6,6 +6,7 @@ const categories = [
   {
     name: "Grocery",
     image: "https://rukminim2.flixcart.com/flap/128/128/image/29327f40e9c4d26b.png?q=100",
+    link: "/grocery",
   },
   {
     name: "Mobiles",
@@ -20,14 +21,17 @@ const categories = [
   {
     name: "Electronics",
     image: "https://rukminim2.flixcart.com/flap/128/128/image/69c6589653afdb9a.png?q=100",
+    link: "/electronics",
   },
   {
     name: "Home & Furniture",
     image: "https://rukminim2.flixcart.com/flap/128/128/image/ab7e2b022a4587dd.jpg?q=100",
+    link: "/home",
   },
   {
     name: "Appliances",
     image: "https://rukminim2.flixcart.com/fk-p-flap/128/128/image/0139228b2f7eb413.jpg?q=100",
+    link: "/appliances",
   },
 ];
 
