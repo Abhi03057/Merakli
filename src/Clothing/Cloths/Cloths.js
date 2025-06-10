@@ -44,7 +44,7 @@ function Cloths() {
     },
     {
       img: "https://rukminim2.flixcart.com/image/612/612/xif0q/t-shirt/h/y/d/xl-52-jando-wight-magneto-original-imagz28p77tzkm8v.jpeg?q=70",
-      name: "Jeans White T-Shirt",
+      name: "Jando White T-Shirt",
       price: "₹599",
       sizes: ["S", "M", "L", "XL", "XXL"],
     },
@@ -52,6 +52,18 @@ function Cloths() {
       img: "https://rukminim2.flixcart.com/image/612/612/xif0q/top/r/i/n/l-top129-bullet-black-dream-beauty-fashion-original-imahaujnrzhw78cd.jpeg?q=70",
       name: "Black Top",
       price: "₹699",
+      sizes: ["S", "M", "L", "XL", "XXL"],
+    },
+    {
+      img: "https://www.kollybollyethnics.com/image/catalog/data/28Dec2018/Gold-shimmer-color-lycra-fancy-fabric-saree-5018.jpg",
+      name: "Gold Shimmer Saree",
+      price: "₹1,899",
+      sizes: ["Free Size"],
+    },
+    {
+      img: "https://th.bing.com/th/id/OIP.39MQ-Bci7BfpdYltftFhdwHaJ4?w=206&h=275&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3",
+      name: "Elegant Embroidered Kurti",
+      price: "₹1,099",
       sizes: ["S", "M", "L", "XL", "XXL"],
     },
   ];
@@ -69,9 +81,7 @@ function Cloths() {
             <img src={product.img} alt={product.name} />
             <h3>{product.name}</h3>
             <p className="price">{product.price}</p>
-            <p className="sizes">
-              Sizes: {product.sizes.join(", ")}
-            </p>
+            <p className="sizes">Sizes: {product.sizes.join(", ")}</p>
             <div className="buttons">
               <button
                 className="add-to-cart"
@@ -91,7 +101,6 @@ function Cloths() {
         ))}
       </div>
 
-      {/* Custom orange alert box */}
       <div className={`custom-alert ${alert.visible ? "show" : ""}`}>
         {alert.message}
       </div>

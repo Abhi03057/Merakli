@@ -1,3 +1,4 @@
+/* Base Styles (Already defined by you) */
 .cloths-wrapper {
   background: white;
   padding: 2rem;
@@ -29,26 +30,43 @@
 
 .product-card {
   width: 22%;
+  padding: 1rem;
+  position: relative;
+  overflow: hidden;
   background: #fff;
   border-radius: 10px;
   box-shadow: 0 3px 8px rgba(0,0,0,0.1);
-  padding: 1rem;
-  text-align: center;
-  cursor: pointer;
-  transition: border 0.3s ease;
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: z-index 0.3s ease;
 }
 
-.product-card:hover {
-  border: 2px solid #c94c1d; /* darker #eb5e28 */
+.product-card-inner {
+  transition: transform 0.3s ease, border 0.3s ease;
+  will-change: transform;
+}
+
+.product-card:hover .product-card-inner {
+  transform: scale(1.05);
+  border: 2px solid #c94c1d;
+  z-index: 2;
 }
 
 .product-card img {
   width: 100%;
   height: 180px;
   object-fit: cover;
-  border-radius: 8px;
+  border-radius: 10px;
   margin-bottom: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.product-card:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+  box-shadow: 0 0 12px rgba(235, 94, 40, 0.3);
 }
 
 .product-card h3 {
@@ -87,7 +105,9 @@
 }
 
 .add-to-cart:hover {
-  background-color: #c94c1d; /* darker */
+  background-color: #fff;
+  color: #eb5e28;
+  border: 2px solid #eb5e28;
 }
 
 .wishlist-btn {
@@ -111,7 +131,6 @@
   color: white;
 }
 
-/* Custom orange alert box */
 .custom-alert {
   position: fixed;
   top: 1rem;
@@ -128,4 +147,61 @@
 
 .custom-alert.show {
   right: 1rem;
+}
+
+
+/* ===================== */
+/* Responsive Media Queries */
+/* ===================== */
+
+/* Medium screens (tablets, <= 1024px) */
+@media (max-width: 1024px) {
+  .product-card {
+    width: 30%;
+  }
+}
+
+/* Small screens (mobile landscape, <= 768px) */
+@media (max-width: 768px) {
+  .product-card {
+    width: 45%;
+  }
+
+  .cloths-header h1 {
+    font-size: 2rem;
+  }
+
+  .cloths-header p {
+    font-size: 1rem;
+  }
+}
+
+/* Extra small screens (mobile portrait, <= 480px) */
+@media (max-width: 480px) {
+  .product-card {
+    width: 90%;
+  }
+
+  .add-to-cart {
+    font-size: 0.85rem;
+    padding: 0.4rem 0.8rem;
+  }
+
+  .wishlist-btn {
+    width: 28px;
+    height: 28px;
+    font-size: 1rem;
+  }
+
+  .cloths-wrapper {
+    padding: 1rem;
+  }
+
+  .cloths-header h1 {
+    font-size: 1.6rem;
+  }
+
+  .cloths-header p {
+    font-size: 0.9rem;
+  }
 }
