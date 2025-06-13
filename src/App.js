@@ -21,6 +21,7 @@ function App() {
     <Router>
       <Navbar />
       <Routes>
+        {/* Homepage */}
         <Route path="/" element={
           <>
             <Categories />
@@ -31,12 +32,14 @@ function App() {
             <Footer />
           </>
         } />
+
+        {/* Category Pages */}
         <Route path="/fashion" element={<Cloths />} />
-        <Route path="/mobiles" element={<Mobiles/>} />
-        <Route path="/grocery" element={<Groceries/>} />
-        <Route path="/electronics" element={<Electronics/>} />
-        <Route path="/home" element={<Home/>} />
-         <Route path="/appliances" element={<Appliances/>} />
+        <Route path="/mobiles" element={<Mobiles />} />
+        <Route path="/grocery" element={<Groceries />} />
+        <Route path="/electronics" element={<Electronics />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/appliances" element={<Appliances />} />
       </Routes>
     </Router>
   );
