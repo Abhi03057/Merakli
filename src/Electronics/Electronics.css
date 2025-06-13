@@ -1,0 +1,25 @@
+/* Style for dropdowns */
+.sidebar select {
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-family: inherit;
+  font-size: 1rem;
+  background-color: #f9f9f9;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+}
+
+.sidebar select:hover,
+.sidebar select:focus {
+  border-color: #007bff;
+  outline: none;
+  background-color: #fff;
+}
+
+/* Optional: style for options */
+.sidebar option {
+  padding: 0.5rem;
+}

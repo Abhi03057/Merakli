@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import "./Mobiles.css";
+import "../Clothing/Cloths/Cloths.css";
+
+
 
 function Mobiles() {
   const initialProducts = [
@@ -45,48 +47,54 @@ function Mobiles() {
 
   const handleSort = (type) => {
     let sorted = [...products];
-    if (type === "low-to-high") {
-      sorted.sort((a, b) => a.price - b.price);
-    } else if (type === "high-to-low") {
-      sorted.sort((a, b) => b.price - a.price);
-    }
+    if (type === "low-to-high") sorted.sort((a, b) => a.price - b.price);
+    else if (type === "high-to-low") sorted.sort((a, b) => b.price - a.price);
     setProducts(sorted);
   };
 
   const handleBrandFilter = (brand) => {
-    const filtered = initialProducts.filter(p => p.brand === brand);
+    const filtered = initialProducts.filter((p) => p.brand === brand);
     setProducts(filtered);
   };
 
   const resetFilter = () => setProducts(initialProducts);
 
   return (
-    <div className="mobiles-page">
-      <aside className="sidebar">
-        <h2>Sort By</h2>
-        <button onClick={() => handleSort("low-to-high")}>Price: Low to High</button>
-        <button onClick={() => handleSort("high-to-low")}>Price: High to Low</button>
+    <div className="cloths-wrapper">
+      <div className="cloths-header">
+        <h1>Mobiles</h1>
+        <p>Explore the latest smartphones at unbeatable prices!</p>
+      </div>
 
-        <h2>Filter By Brand</h2>
-        <button onClick={() => handleBrandFilter("Apple")}>Apple</button>
-        <button onClick={() => handleBrandFilter("Samsung")}>Samsung</button>
-        <button onClick={() => handleBrandFilter("Google")}>Google</button>
-        <button onClick={() => handleBrandFilter("Oppo")}>Oppo</button>
-        <button onClick={resetFilter}>Show All</button>
-      </aside>
+      <div className="content-container">
+        {/* Sidebar */}
+        <aside className="sidebar">
+          <h3>Sort By</h3>
+          <button onClick={() => handleSort("low-to-high")}>Price: Low to High</button>
+          <button onClick={() => handleSort("high-to-low")}>Price: High to Low</button>
 
-      <div className="products-container">
-        {products.map((product, idx) => (
-          <div className="product-card" key={idx}>
-            <img src={product.img} alt={product.name} />
-            <h3>{product.name}</h3>
-            <p className="price">₹{product.price.toLocaleString()}</p>
-            <div className="buttons">
-              <button className="add-to-cart">Add to Cart</button>
-              <button className="wishlist-btn">❤</button>
+          <h3>Filter By Brand</h3>
+          <button onClick={() => handleBrandFilter("Apple")}>Apple</button>
+          <button onClick={() => handleBrandFilter("Samsung")}>Samsung</button>
+          <button onClick={() => handleBrandFilter("Google")}>Google</button>
+          <button onClick={() => handleBrandFilter("Oppo")}>Oppo</button>
+          <button onClick={resetFilter}>Show All</button>
+        </aside>
+
+        {/* Product Grid */}
+        <div className="products-container">
+          {products.map((product, idx) => (
+            <div className="product-card" key={idx}>
+              <img src={product.img} alt={product.name} />
+              <h3>{product.name}</h3>
+              <p className="price">₹{product.price.toLocaleString()}</p>
+              <div className="buttons">
+                <button className="add-to-cart">Add to Cart</button>
+                <button className="wishlist-btn">❤</button>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   );

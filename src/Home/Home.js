@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import "../Mobiles/Mobiles.css"; // Reusing existing CSS
+import "../Clothing/Cloths/Cloths.css";
+
 
 function Home() {
   const [sortOrder, setSortOrder] = useState("");
@@ -7,37 +8,37 @@ function Home() {
 
   const products = [
     {
-      img: "https://rukminim1.flixcart.com/image/832/832/kq6yefk0/sofa-sectional/d/0/b/blue-5-seater-204-bharat-lifestyle-35-original-imag496zyu2hq7hs.jpeg?q=70",
+      img: "https://images.woodenstreet.de/image/data/fabric-sofa/mishael/5-seater/left-aligned/2.jpg",
       name: "5-Seater Fabric Sofa",
       price: 15999,
       brand: "Bharat Lifestyle",
     },
     {
-      img: "https://www.ulcdn.net/images/products/849314/product/Tyra_King_Bed_Walnut_Mattress_LP.jpg",
+      img: "https://images.woodenstreet.de/image/data/bed-with-storage/adolph-bed-with-side-storage/revised/revised/honey/updated/honey/1.jpg",
       name: "King Size Wooden Bed",
       price: 21999,
       brand: "Urban Ladder",
     },
     {
-      img: "https://m.media-amazon.com/images/I/71zO4z0fugL._AC_UF894,1000_QL80_.jpg",
+      img: "https://res.litfad.com/site/img/item/2023/10/23/10314212/1200x1200.jpg",
       name: "Modern Office Chair",
       price: 7499,
       brand: "Green Soul",
     },
     {
-      img: "https://www.ulcdn.net/images/products/874515/product/Caspian_4_Seater_Dining_Table_Set_Finish_LP.jpg",
+      img: "https://cdn.decornation.in/wp-content/uploads/2020/03/solid-wooden-dining-table-1.jpg",
       name: "4-Seater Dining Table",
       price: 12999,
       brand: "Flipkart Perfect Homes",
     },
     {
-      img: "https://www.furniturestore.ae/uploads/product/modern-tv-unit-design-wooden-tv-stand-for-home-20201210053914-500x500.jpg",
+      img: "https://images.woodenstreet.de/image/data/tv-units/melvina-tv-unit/revised/honey/updated/new-logo/1.jpg",
       name: "Wooden TV Unit",
       price: 8999,
       brand: "HomeTown",
     },
     {
-      img: "https://ii1.pepperfry.com/media/catalog/product/j/u/494x544/julia-coffee-table-in-provincial-teak-finish-by-woodsworth-julia-coffee-table-in-provincial-teak-fi-joipaq.jpg",
+      img: "https://target.scene7.com/is/image/Target/GUEST_f6c3de1e-6788-444b-a0b4-f65a0e7134aa?qlt=65&fmt=pjpeg&hei=350&wid=350",
       name: "Julia Coffee Table",
       price: 4299,
       brand: "Woodsworth",

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import "../Mobiles/Mobiles.css"; // shared styles
+import "../Clothing/Cloths/Cloths.css";
+import "./Electronics.css";
 
 function Electronics() {
   const [alert, setAlert] = useState({ message: "", visible: false });
@@ -64,7 +65,7 @@ function Electronics() {
   let filteredProducts = [...products];
 
   if (brandFilter) {
-    filteredProducts = filteredProducts.filter(p => p.brand === brandFilter);
+    filteredProducts = filteredProducts.filter((p) => p.brand === brandFilter);
   }
 
   if (sortOption === "low-to-high") {
@@ -74,14 +75,14 @@ function Electronics() {
   }
 
   return (
-    <div className="mobiles-wrapper">
-      <div className="mobiles-header">
+    <div className="cloths-wrapper">
+      <div className="cloths-header">
         <h1>Electronics</h1>
         <p>Top gadgets and devices for your digital life!</p>
       </div>
 
-      <div className="mobiles-container">
-        <div className="sidebar">
+      <div className="content-container">
+        <aside className="sidebar">
           <h3>Sort By</h3>
           <select onChange={(e) => setSortOption(e.target.value)} value={sortOption}>
             <option value="">Select</option>
@@ -93,10 +94,12 @@ function Electronics() {
           <select onChange={(e) => setBrandFilter(e.target.value)} value={brandFilter}>
             <option value="">All Brands</option>
             {brands.map((brand, index) => (
-              <option key={index} value={brand}>{brand}</option>
+              <option key={index} value={brand}>
+                {brand}
+              </option>
             ))}
           </select>
-        </div>
+        </aside>
 
         <div className="products-container">
           {filteredProducts.map((product, index) => (
@@ -105,8 +108,12 @@ function Electronics() {
               <h3>{product.name}</h3>
               <p className="price">₹{product.price.toLocaleString()}</p>
               <div className="buttons">
-                <button className="add-to-cart" onClick={() => handleAddToCart(product.name)}>Add to cart</button>
-                <button className="wishlist-btn" onClick={() => handleAddToWishlist(product.name)}>❤</button>
+                <button className="add-to-cart" onClick={() => handleAddToCart(product.name)}>
+                  Add to cart
+                </button>
+                <button className="wishlist-btn" onClick={() => handleAddToWishlist(product.name)}>
+                  ❤
+                </button>
               </div>
             </div>
           ))}

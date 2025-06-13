@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import "../Mobiles/Mobiles.css"; // Reusing existing design
+import "../Clothing/Cloths/Cloths.css";
+
 
 function Appliances() {
   const [sortOrder, setSortOrder] = useState("");
