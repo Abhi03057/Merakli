@@ -1,18 +1,23 @@
 import React, { useState } from "react";
 import "./Cloths.css";
+import { useCart } from '../../Cart/CartContext';
+
 
 function Cloths() {
   const [alert, setAlert] = useState({ message: "", visible: false });
   const [sortType, setSortType] = useState("");
   const [filterCategory, setFilterCategory] = useState("All");
 
+  const { addToCart } = useCart(); // 👈 get addToCart from context
+
   const showAlert = (message) => {
     setAlert({ message, visible: true });
     setTimeout(() => setAlert({ message: "", visible: false }), 3000);
   };
 
-  const handleAddToCart = (name) => {
-    showAlert(`"${name}" added to cart!`);
+  const handleAddToCart = (product) => {
+    addToCart(product); // 👈 Add to global cart
+    showAlert(`"${product.name}" added to cart!`);
   };
 
   const handleAddToWishlist = (name) => {
@@ -115,7 +120,7 @@ function Cloths() {
               <p className="price">₹{product.price}</p>
               <p className="sizes">Sizes: {product.sizes.join(", ")}</p>
               <div className="buttons">
-                <button className="add-to-cart" onClick={() => handleAddToCart(product.name)}>
+                <button className="add-to-cart" onClick={() => handleAddToCart(product)}>
                   Add to cart
                 </button>
                 <button className="wishlist-btn" onClick={() => handleAddToWishlist(product.name)}>

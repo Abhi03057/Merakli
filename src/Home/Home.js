@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import "../Clothing/Cloths/Cloths.css";
 import "./Home.css";
+import { useCart } from "../Cart/CartContext"; // ✅ Import useCart
 
 function Home() {
+  const { addToCart } = useCart(); // ✅ Access global addToCart
   const [sortOrder, setSortOrder] = useState("");
   const [brandFilter, setBrandFilter] = useState("");
+  const [alert, setAlert] = useState({ message: "", visible: false }); // ✅ Alert state
 
   const products = [
     {
@@ -45,12 +48,18 @@ function Home() {
     },
   ];
 
-  const handleAddToCart = (name) => {
-    alert(`"${name}" added to cart!`);
+  const handleAddToCart = (product) => {
+    addToCart(product); // ✅ Use global context
+    showAlert(`"${product.name}" added to cart!`);
   };
 
   const handleAddToWishlist = (name) => {
-    alert(`"${name}" added to wishlist!`);
+    showAlert(`"${name}" added to wishlist!`);
+  };
+
+  const showAlert = (message) => {
+    setAlert({ message, visible: true });
+    setTimeout(() => setAlert({ message: "", visible: false }), 3000);
   };
 
   const sortedProducts = [...products]
@@ -94,7 +103,7 @@ function Home() {
               <h3>{product.name}</h3>
               <p className="price">₹{product.price.toLocaleString()}</p>
               <div className="buttons">
-                <button className="add-to-cart" onClick={() => handleAddToCart(product.name)}>
+                <button className="add-to-cart" onClick={() => handleAddToCart(product)}>
                   Add to cart
                 </button>
                 <button
@@ -108,6 +117,11 @@ function Home() {
             </div>
           ))}
         </div>
+      </div>
+
+      {/* Alert */}
+      <div className={`custom-alert ${alert.visible ? "show" : ""}`}>
+        {alert.message}
       </div>
     </div>
   );

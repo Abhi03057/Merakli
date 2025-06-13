@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import "../Clothing/Cloths/Cloths.css";
-
-
+import { useCart } from "../Cart/CartContext"; // ✅ Import cart context
 
 function Mobiles() {
+  const { addToCart } = useCart(); // ✅ Get addToCart function
   const initialProducts = [
     {
       img: "https://www.dpreview.com/files/p/articles/3945272296/iPhone/Apple-iphone-16-event-021.jpeg",
@@ -44,9 +44,24 @@ function Mobiles() {
   ];
 
   const [products, setProducts] = useState(initialProducts);
+  const [alert, setAlert] = useState({ message: "", visible: false });
+
+  const showAlert = (message) => {
+    setAlert({ message, visible: true });
+    setTimeout(() => setAlert({ message: "", visible: false }), 3000);
+  };
+
+  const handleAddToCart = (product) => {
+    addToCart(product);
+    showAlert(`"${product.name}" added to cart!`);
+  };
+
+  const handleAddToWishlist = (name) => {
+    showAlert(`"${name}" added to wishlist!`);
+  };
 
   const handleSort = (type) => {
-    let sorted = [...products];
+    const sorted = [...products];
     if (type === "low-to-high") sorted.sort((a, b) => a.price - b.price);
     else if (type === "high-to-low") sorted.sort((a, b) => b.price - a.price);
     setProducts(sorted);
@@ -89,12 +104,21 @@ function Mobiles() {
               <h3>{product.name}</h3>
               <p className="price">₹{product.price.toLocaleString()}</p>
               <div className="buttons">
-                <button className="add-to-cart">Add to Cart</button>
-                <button className="wishlist-btn">❤</button>
+                <button className="add-to-cart" onClick={() => handleAddToCart(product)}>
+                  Add to Cart
+                </button>
+                <button className="wishlist-btn" onClick={() => handleAddToWishlist(product.name)}>
+                  ❤
+                </button>
               </div>
             </div>
           ))}
         </div>
+      </div>
+
+      {/* Alert Message */}
+      <div className={`custom-alert ${alert.visible ? "show" : ""}`}>
+        {alert.message}
       </div>
     </div>
   );

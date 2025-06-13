@@ -1,25 +1,28 @@
 import React, { useState } from "react";
 import "../Clothing/Cloths/Cloths.css";
 import "./Electronics.css";
+import { useCart } from "../Cart/CartContext"; // ✅ Import cart context
 
 function Electronics() {
   const [alert, setAlert] = useState({ message: "", visible: false });
+  const [sortOption, setSortOption] = useState("");
+  const [brandFilter, setBrandFilter] = useState("");
+
+  const { addToCart } = useCart(); // ✅ Get addToCart function from context
 
   const showAlert = (message) => {
     setAlert({ message, visible: true });
     setTimeout(() => setAlert({ message: "", visible: false }), 3000);
   };
 
-  const handleAddToCart = (name) => {
-    showAlert(`"${name}" added to cart!`);
+  const handleAddToCart = (product) => {
+    addToCart(product); // ✅ Add product to global cart
+    showAlert(`"${product.name}" added to cart!`);
   };
 
   const handleAddToWishlist = (name) => {
     showAlert(`"${name}" added to wishlist!`);
   };
-
-  const [sortOption, setSortOption] = useState("");
-  const [brandFilter, setBrandFilter] = useState("");
 
   const products = [
     {
@@ -108,7 +111,7 @@ function Electronics() {
               <h3>{product.name}</h3>
               <p className="price">₹{product.price.toLocaleString()}</p>
               <div className="buttons">
-                <button className="add-to-cart" onClick={() => handleAddToCart(product.name)}>
+                <button className="add-to-cart" onClick={() => handleAddToCart(product)}>
                   Add to cart
                 </button>
                 <button className="wishlist-btn" onClick={() => handleAddToWishlist(product.name)}>

@@ -11,7 +11,7 @@ function Navbar() {
 
       <nav>
         <div className='nav2'>
-          {/* ✅ Wrap Merakli in a <Link> to go to homepage */}
+          {/* ✅ Homepage Link */}
           <Link to="/" className="brand-link">
             <strong>Merakli</strong>
           </Link>
@@ -32,8 +32,15 @@ function Navbar() {
             </li>
           </ul>
 
-          <a href="#"><button className="nav-btn">Cart</button></a>
-          <a href="#"><button className="nav-btn">Settings</button></a>
+          {/* ✅ Cart Link */}
+          <Link to="/cart">
+            <button className="nav-btn">Cart</button>
+          </Link>
+
+          {/* ✅ Optional: Settings Link */}
+          <Link to="/settings">
+            <button className="nav-btn">Settings</button>
+          </Link>
         </div>
       </nav>
     </div>

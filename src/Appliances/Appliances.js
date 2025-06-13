@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import "../Clothing/Cloths/Cloths.css";
+import { useCart } from "../Cart/CartContext"; // 👈 import cart context
 
 function Appliances() {
   const [sortOrder, setSortOrder] = useState("");
   const [brandFilter, setBrandFilter] = useState("");
+
+  const { addToCart } = useCart(); // 👈 use addToCart from context
 
   const products = [
     {
@@ -44,8 +47,8 @@ function Appliances() {
     },
   ];
 
-  const handleAddToCart = (name) => {
-    alert(`"${name}" added to cart!`);
+  const handleAddToCart = (product) => {
+    addToCart(product); // 👈 global cart logic
   };
 
   const handleAddToWishlist = (name) => {
@@ -95,7 +98,7 @@ function Appliances() {
               <h3>{product.name}</h3>
               <p className="price">₹{product.price.toLocaleString()}</p>
               <div className="buttons">
-                <button className="add-to-cart" onClick={() => handleAddToCart(product.name)}>
+                <button className="add-to-cart" onClick={() => handleAddToCart(product)}>
                   Add to cart
                 </button>
                 <button

@@ -15,33 +15,40 @@ import Groceries from './Groceries/Groceries';
 import Electronics from './Electronics/Electronics';
 import Home from './Home/Home';
 import Appliances from './Appliances/Appliances';
+import Cart from './Cart/Cart'; 
+import { CartProvider } from './Cart/CartContext'; 
 
 function App() {
   return (
-    <Router>
-      <Navbar />
-      <Routes>
-        {/* Homepage */}
-        <Route path="/" element={
-          <>
-            <Categories />
-            <Slider />
-            <Offer />
-            <Ads />
-            <Offer2 />
-            <Footer />
-          </>
-        } />
+    <CartProvider>
+      <Router>
+        <Navbar />
+        <Routes>
+          {/* Homepage */}
+          <Route path="/" element={
+            <>
+              <Categories />
+              <Slider />
+              <Offer />
+              <Ads />
+              <Offer2 />
+              <Footer />
+            </>
+          } />
 
-        {/* Category Pages */}
-        <Route path="/fashion" element={<Cloths />} />
-        <Route path="/mobiles" element={<Mobiles />} />
-        <Route path="/grocery" element={<Groceries />} />
-        <Route path="/electronics" element={<Electronics />} />
-        <Route path="/home" element={<Home />} />
-        <Route path="/appliances" element={<Appliances />} />
-      </Routes>
-    </Router>
+          {/* Category Pages */}
+          <Route path="/fashion" element={<Cloths />} />
+          <Route path="/mobiles" element={<Mobiles />} />
+          <Route path="/grocery" element={<Groceries />} />
+          <Route path="/electronics" element={<Electronics />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/appliances" element={<Appliances />} />
+
+          {/*  Cart Page */}
+          <Route path="/cart" element={<Cart />} />
+        </Routes>
+      </Router>
+    </CartProvider>
   );
 }
 

@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import "../Clothing/Cloths/Cloths.css";
+import { useCart } from "../Cart/CartContext"; // ✅ Import cart context
 
 function Groceries() {
+  const { addToCart } = useCart(); // ✅ Get addToCart function from context
+
   const initialItems = [
     {
       img: "https://th.bing.com/th/id/OIP.TVLgE9gou6yuwL0QrQzZhAHaHa?w=183&h=183&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3",
@@ -42,6 +45,12 @@ function Groceries() {
   ];
 
   const [items, setItems] = useState(initialItems);
+  const [alert, setAlert] = useState({ message: "", visible: false });
+
+  const showAlert = (message) => {
+    setAlert({ message, visible: true });
+    setTimeout(() => setAlert({ message: "", visible: false }), 3000);
+  };
 
   const handleSort = (type) => {
     const sorted = [...items];
@@ -60,12 +69,22 @@ function Groceries() {
 
   const resetFilter = () => setItems(initialItems);
 
+  const handleAddToCart = (item) => {
+    addToCart(item);
+    showAlert(`"${item.name}" added to cart!`);
+  };
+
+  const handleAddToWishlist = (name) => {
+    showAlert(`"${name}" added to wishlist!`);
+  };
+
   return (
     <div className="cloths-wrapper">
       <div className="cloths-header">
         <h1>Grocery Essentials</h1>
         <p>Shop daily needs at unbeatable prices.</p>
       </div>
+
       <div className="content-container">
         <aside className="sidebar">
           <h3>Sort By</h3>
@@ -88,12 +107,20 @@ function Groceries() {
               <h3>{item.name}</h3>
               <p className="price">₹{item.price.toLocaleString()}</p>
               <div className="buttons">
-                <button className="add-to-cart">Add to Cart</button>
-                <button className="wishlist-btn">❤</button>
+                <button className="add-to-cart" onClick={() => handleAddToCart(item)}>
+                  Add to Cart
+                </button>
+                <button className="wishlist-btn" onClick={() => handleAddToWishlist(item.name)}>
+                  ❤
+                </button>
               </div>
             </div>
           ))}
         </div>
+      </div>
+
+      <div className={`custom-alert ${alert.visible ? "show" : ""}`}>
+        {alert.message}
       </div>
     </div>
   );
