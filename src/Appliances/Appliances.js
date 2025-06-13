@@ -7,37 +7,37 @@ function Appliances() {
 
   const products = [
     {
-      img: "https://m.media-amazon.com/images/I/71n58CqA5LL._SL1500_.jpg",
-      name: "LG 190L Refrigerator",
-      price: 15990,
+      img: "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6250/6250127cv36d.jpg",
+      name: "LG - 26 Cu. Ft. French Door-in-Door Smart Refrigerator with Dual Ice Maker - Stainless Steel",
+      price: 146200,
       brand: "LG",
     },
     {
-      img: "https://m.media-amazon.com/images/I/61XpnKq+6fL._SL1500_.jpg",
+      img: "https://rukminim1.flixcart.com/image/1408/1408/washing-machine-new/p/5/r/samsung-wf602b2bhsd-tl-original-imaej9ygaruyuhkf.jpeg?q=90",
       name: "Samsung 6kg Washing Machine",
       price: 16490,
       brand: "Samsung",
     },
     {
-      img: "https://m.media-amazon.com/images/I/61+FJrB8gmL._SL1500_.jpg",
+      img: "https://cdn.shopify.com/s/files/1/0525/2592/4550/products/81kuNvM7ciL._SL1500.jpg?crop=center&height=1500&v=1664886393&width=1500",
       name: "IFB 30L Microwave Oven",
       price: 12499,
       brand: "IFB",
     },
     {
-      img: "https://m.media-amazon.com/images/I/71bm3uk5BtL._SL1500_.jpg",
+      img: "https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1719329232/Croma%20Assets/Small%20Appliances/Fans/Images/304600_0_mrczoh.png",
       name: "Havells 1200mm Ceiling Fan",
       price: 2399,
       brand: "Havells",
     },
     {
-      img: "https://m.media-amazon.com/images/I/81On7xBEkwL._SL1500_.jpg",
+      img: "https://cdn.staticans.com/image/tr:e-sharpen-01,h-1500,w-1500,cm-pad_resize/catalog/brandstore/philips/254-2023_04_25-HD9257_4.jpg",
       name: "Philips Air Fryer",
       price: 7999,
       brand: "Philips",
     },
     {
-      img: "https://m.media-amazon.com/images/I/61FPCYPJZyL._SL1500_.jpg",
+      img: "https://www.panasonic.com/content/dam/pim/my/en/NN/NN-ST2/NN-ST22QB/ast-2469044.jpg.pub.crop.pc.thumb.640.1200.jpg",
       name: "Panasonic 20L Solo Microwave",
       price: 7490,
       brand: "Panasonic",
