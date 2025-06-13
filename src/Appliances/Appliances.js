@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import "../Clothing/Cloths/Cloths.css";
 
-
 function Appliances() {
   const [sortOrder, setSortOrder] = useState("");
   const [brandFilter, setBrandFilter] = useState("");
@@ -64,15 +63,15 @@ function Appliances() {
   const uniqueBrands = [...new Set(products.map((p) => p.brand))];
 
   return (
-    <div className="mobiles-wrapper">
-      <div className="mobiles-header">
+    <div className="cloths-wrapper">
+      <div className="cloths-header">
         <h1>Appliances</h1>
         <p>Essential appliances for your home and kitchen!</p>
       </div>
 
-      <div className="mobiles-content">
+      <div className="content">
         {/* Sidebar */}
-        <aside className="mobiles-sidebar">
+        <aside className="sidebar">
           <h3>Sort by Price</h3>
           <button onClick={() => setSortOrder("low-to-high")}>Low to High</button>
           <button onClick={() => setSortOrder("high-to-low")}>High to Low</button>
@@ -89,7 +88,7 @@ function Appliances() {
         </aside>
 
         {/* Product Cards */}
-        <div className="mobiles-products">
+        <div className="products-container">
           {sortedProducts.map((product, index) => (
             <div key={index} className="product-card">
               <img src={product.img} alt={product.name} />
