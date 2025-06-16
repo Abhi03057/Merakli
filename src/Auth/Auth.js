@@ -1,6 +1,14 @@
 // src/Auth/Auth.js
 import React, { useState } from 'react';
-import './Auth.css'; // You'll define this next
+import { auth } from '../firebase';
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  GoogleAuthProvider,
+  signInWithPopup
+} from 'firebase/auth';
+
+import './Auth.css';
 import { useNavigate } from 'react-router-dom';
 
 function Auth() {
@@ -11,18 +19,38 @@ function Auth() {
 
   const toggleMode = () => setIsSignUp(!isSignUp);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (isSignUp) {
-      // Sign Up logic
-      console.log('Signing up:', { email, password });
-    } else {
-      // Sign In logic
-      console.log('Signing in:', { email, password });
-    }
 
-    // Navigate to home after success
-    navigate('/');
+    try {
+      if (isSignUp) {
+        // Firebase Email/Password Sign-Up
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        console.log('User signed up:', userCredential.user);
+      } else {
+        // Firebase Email/Password Sign-In
+        const userCredential = await signInWithEmailAndPassword(auth, email, password);
+        console.log('User signed in:', userCredential.user);
+      }
+
+      navigate('/'); // redirect to homepage
+    } catch (error) {
+      console.error('Auth error:', error.message);
+      alert(error.message);
+    }
+  };
+
+  const handleGoogleSignIn = async () => {
+    const provider = new GoogleAuthProvider();
+    try {
+      const result = await signInWithPopup(auth, provider);
+      console.log('Google sign-in success:', result.user);
+      alert('Logged in with Google: ' + result.user.email);
+      navigate('/'); // redirect to homepage
+    } catch (error) {
+      console.error('Google sign-in error:', error.message);
+      alert('Google sign-in failed: ' + error.message);
+    }
   };
 
   return (
@@ -50,6 +78,11 @@ function Auth() {
             {isSignUp ? 'Sign Up' : 'Sign In'}
           </button>
         </form>
+
+        <button className="google-btn" onClick={handleGoogleSignIn}>
+          Sign in with Google
+        </button>
+
         <p className="toggle-text">
           {isSignUp ? 'Already have an account?' : "Don't have an account?"}{' '}
           <span onClick={toggleMode}>

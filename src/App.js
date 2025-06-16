@@ -16,7 +16,7 @@ import Electronics from './Electronics/Electronics';
 import Home from './Home/Home';
 import Appliances from './Appliances/Appliances';
 import Cart from './Cart/Cart'; 
-import Auth from './Auth/Auth';         // ✅ Added
+import Auth from './Auth/Auth';         
 import { CartProvider } from './Cart/CartContext'; 
 
 function App() {
@@ -46,7 +46,7 @@ function App() {
           <Route path="/appliances" element={<Appliances />} />
 
           {/* Auth & Cart Pages */}
-          <Route path="/auth" element={<Auth />} />   {/* ✅ Added */}
+          <Route path="/auth" element={<Auth />} />   
           <Route path="/cart" element={<Cart />} />
         </Routes>
       </Router>

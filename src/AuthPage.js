@@ -11,7 +11,7 @@ function Auth() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  // ✅ Replace your old handleSubmit with this
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -20,15 +20,15 @@ function Auth() {
     try {
       if (isSignup) {
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-        console.log("✅ User created:", userCredential.user);
+        console.log(" User created:", userCredential.user);
         alert("User created successfully!");
       } else {
         const userCredential = await signInWithEmailAndPassword(auth, email, password);
-        console.log("✅ User signed in:", userCredential.user);
+        console.log(" User signed in:", userCredential.user);
         alert("Logged in successfully!");
       }
     } catch (error) {
-      console.error("❌ Firebase error:", error.message);
+      console.error(" Firebase error:", error.message);
       alert("Error: " + error.message);
     }
   };
