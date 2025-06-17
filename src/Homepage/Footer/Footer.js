@@ -41,9 +41,9 @@ function Footer() {
       <div className="footer-bottom">
         <p>No Rights reserved. Made by Abhyuday Singh Panwar.</p>
         <div className="social-icons">
-          <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer"><FaInstagram /></a>
-          <a href="https://linkedin.com/" target="_blank" rel="noopener noreferrer"><FaLinkedin /></a>
-          <a href="https://github.com/" target="_blank" rel="noopener noreferrer"><FaGithub /></a>
+          <a href="https://www.instagram.com/ab_pan07/" target="_blank" rel="noopener noreferrer"><FaInstagram /></a>
+          <a href="https://www.linkedin.com/in/abhyuday-panwar-9579b2289/" target="_blank" rel="noopener noreferrer"><FaLinkedin /></a>
+          <a href="https://github.com/Abhi03057" target="_blank" rel="noopener noreferrer"><FaGithub /></a>
         </div>
       </div>
     </div>
