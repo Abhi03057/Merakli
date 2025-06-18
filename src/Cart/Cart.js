@@ -4,9 +4,12 @@ import './Cart.css';
 import { useCart } from './CartContext';
 
 function Cart() {
-  const { cartItems } = useCart();
+  const { cartItems, removeFromCart } = useCart();
 
-  const totalAmount = cartItems.reduce((acc, item) => acc + item.price, 0);
+  const totalAmount = cartItems.reduce(
+    (acc, item) => acc + item.price * item.quantity,
+    0
+  );
 
   return (
     <div className="cart-wrapper">
@@ -21,7 +24,16 @@ function Cart() {
                 <img src={item.img} alt={item.name} />
                 <div className="item-details">
                   <h4>{item.name}</h4>
-                  <p className="price">₹{item.price.toLocaleString()}</p>
+                  <p className="price">
+                    ₹{item.price.toLocaleString()} × {item.quantity} = ₹
+                    {(item.price * item.quantity).toLocaleString()}
+                  </p>
+                  <button
+                    className="remove-btn"
+                    onClick={() => removeFromCart(item.name)}
+                  >
+                    Remove
+                  </button>
                 </div>
               </div>
             ))}

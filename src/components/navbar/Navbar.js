@@ -1,8 +1,23 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './Navbar.css';
+import { useAuth } from '../../context/AuthContext';
+import { getAuth, signOut } from 'firebase/auth';
 
 function Navbar() {
+  const { user } = useAuth(); 
+
+  const handleLogout = () => {
+    const auth = getAuth();
+    signOut(auth)
+      .then(() => {
+        console.log("User logged out");
+      })
+      .catch((error) => {
+        console.error("Logout error:", error);
+      });
+  };
+
   return (
     <div>
       {/* Top announcement bar */}
@@ -20,29 +35,46 @@ function Navbar() {
           <input type="text" placeholder="Search Products" />
 
           <ul className="menu">
-            {/* LOGIN DROPDOWN */}
+            {/* LOGIN/USERNAME DROPDOWN */}
             <li className="menu-item dropdown-parent">
-              <button className="nav-btn">Login</button>
-              <ul className="dropdown">
-                <li><Link to="/auth">New Customer? Sign Up</Link></li>
-                <li><a href="#">Your Orders</a></li>
-                <li><a href="#">Profile</a></li>
-                <li><a href="#">Wishlist</a></li>
-                <li><a href="#">Rewards</a></li>
-                <li><a href="#">Coupons</a></li>
-              </ul>
+              {user ? (
+                <>
+                  <button className="nav-btn username-btn">
+                    {user.displayName || user.email.split('@')[0]}
+                  </button>
+                  <ul className="dropdown">
+                    <li><a href="#">Your Orders</a></li>
+                    <li><a href="#">Profile</a></li>
+                    <li><a href="#">Wishlist</a></li>
+                    <li><a href="#">Rewards</a></li>
+                    <li><a href="#">Coupons</a></li>
+                    <li onClick={handleLogout}><a href="#">Logout</a></li>
+                  </ul>
+                </>
+              ) : (
+                <>
+                  <button className="nav-btn">
+                    <i className="fa-solid fa-user icon-style"></i>
+                  </button>
+                  <ul className="dropdown">
+                    <li><Link to="/auth">New Customer? Sign Up</Link></li>
+                    <li><a href="#">Your Orders</a></li>
+                    <li><a href="#">Profile</a></li>
+                    <li><a href="#">Wishlist</a></li>
+                    <li><a href="#">Rewards</a></li>
+                    <li><a href="#">Coupons</a></li>
+                  </ul>
+                </>
+              )}
             </li>
 
             {/* CART */}
             <li>
               <Link to="/cart">
-                <button className="nav-btn">Cart</button>
+                <button className="nav-btn">
+                  <i className="fa-solid fa-cart-shopping icon-style"></i>
+                </button>
               </Link>
-            </li>
-
-            {/* SETTINGS */}
-            <li>
-              <button className="nav-btn">Settings</button>
             </li>
           </ul>
         </div>

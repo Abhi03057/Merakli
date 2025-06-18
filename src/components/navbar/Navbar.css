@@ -30,7 +30,6 @@
 /* Brand/logo */
 .nav2 strong {
   font-size: 1.5rem;
-  font-family: "SUSE";
   font-weight: bold;
   color: #fff;
   margin-right: 20px;
@@ -46,22 +45,25 @@
   font-size: 14px;
 }
 
-/* Common nav button style (Login, Cart, Settings) */
+/* Nav button */
 .nav-btn,
 .menu-item {
   background-color: #252422;
   color: #ccc5b9;
-  padding: 8px 14px;
+  padding: 10px 12px;
   border: none;
-  border-radius: 25px;
+  border-radius: 50%;
   cursor: pointer;
   font-family: "SUSE";
   font-size: 1rem;
   transition: background-color 0.2s ease, color 0.2s ease;
   text-decoration: none;
-  font-weight: bold;
   text-align: center;
-  min-width: 90px;
+  min-width: 45px;
+  min-height: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* Hover effect */
@@ -69,6 +71,11 @@
 .menu-item:hover {
   background-color: #ccc5b9;
   color: #252422;
+}
+
+/* Icon style */
+.icon-style {
+  font-size: 1.1rem;
 }
 
 /* Remove bullets */
@@ -134,12 +141,10 @@
   color: inherit;
 }
 
-/* Flex fixes */
-.nav2 .menu,
-.nav2 a {
+/* Align menu */
+.nav2 .menu {
   display: flex;
   align-items: center;
-  margin-left: 8px;
   gap: 12px;
 }
 
@@ -147,7 +152,6 @@
 /* Responsive Media Queries */
 /* ===================== */
 
-/* Medium screens (<= 1024px) */
 @media (max-width: 1024px) {
   .nav2 {
     flex-wrap: wrap;
@@ -166,12 +170,10 @@
   }
 
   .nav-btn {
-    padding: 8px 12px;
     font-size: 0.9rem;
   }
 }
 
-/* Small screens (<= 768px) */
 @media (max-width: 768px) {
   .nav2 {
     flex-direction: column;
@@ -186,14 +188,12 @@
   }
 
   .nav-btn {
-    width: 100%;
-    max-width: 220px;
-    font-size: 0.95rem;
-    padding: 10px 16px;
+    width: 45px;
+    height: 45px;
+    padding: 0;
   }
 }
 
-/* Extra small screens (<= 480px) */
 @media (max-width: 480px) {
   .nav1 {
     font-size: 0.8rem;
@@ -211,8 +211,51 @@
 
   .nav-btn {
     font-size: 0.85rem;
-    padding: 8px 12px;
-    width: 100%;
-    max-width: 180px;
+    width: 40px;
+    height: 40px;
+    padding: 0;
   }
+
+  .icon-style {
+    font-size: 1rem;
+  }
+}
+
+/* Username button styling */
+.username-btn {
+  background-color: #fff;
+  color: #eb5e28;
+  padding: 8px 18px;
+  border: 2px solid #fff;
+  border-radius: 25px;
+  font-family: "SUSE";
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: default;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.username-btn:hover {
+  background-color: #ccc5b9;
+  color: #252422;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .username-btn {
+    font-size: 0.9rem;
+    padding: 6px 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .username-btn {
+    font-size: 0.85rem;
+    padding: 6px 12px;
+  }
+}
+.username-btn {
+  border-radius: 20px !important;
+  padding: 8px 16px !important;
+  min-width: unset !important;
 }
