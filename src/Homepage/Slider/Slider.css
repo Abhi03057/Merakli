@@ -1,54 +1,345 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,100..900;1,100..900&family=SUSE:wght@100..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
 
-.slider-container {
-  width: 100vw;
-  max-width: none;
-  margin: 3vh auto;
-  position: relative;
-  user-select: none;
-  font-family: "SUSE";
-}
-
-.slider {
-  position: relative;
+.slider-row {
   display: flex;
-  align-items: center;
   justify-content: center;
-}
-
-.slider-image {
+  align-items: center;
+  gap: 2rem;
+  padding: 4rem 2rem;
+  background: 
+    linear-gradient(135deg, rgba(235, 94, 40, 0.02) 0%, rgba(255, 255, 255, 0.95) 25%, rgba(235, 94, 40, 0.03) 100%),
+    radial-gradient(ellipse at 30% 20%, rgba(235, 94, 40, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 70% 80%, rgba(235, 94, 40, 0.06) 0%, transparent 50%),
+    linear-gradient(180deg, #ffffff 0%, #fafafa 100%);
+  font-family: 'Montserrat', sans-serif;
+  flex-wrap: wrap;
+  overflow: visible;
+  min-height: 50vh;
+  position: relative;
+  scroll-behavior: smooth;
   width: 100%;
-  height: auto;
-  max-height: 700px;
-  object-fit: contain;
-  border-radius: 8px;
+  max-width: 1400px;
+  margin: 0 auto;
+  border-radius: 20px;
 }
 
-.arrow {
+/* Enhanced geometric overlay */
+.slider-row::before {
+  content: '';
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: rgba(37, 36, 34, 0.7);
-  border: none;
-  color: #ccc5b9;
-  font-size: 2rem;
-  padding: 8px 12px;
-  cursor: pointer;
+  inset: 0;
+  background: 
+    repeating-linear-gradient(
+      45deg,
+      transparent 0px,
+      transparent 2px,
+      rgba(235, 94, 40, 0.02) 2px,
+      rgba(235, 94, 40, 0.02) 4px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      transparent 0px,
+      transparent 2px,
+      rgba(235, 94, 40, 0.015) 2px,
+      rgba(235, 94, 40, 0.015) 4px
+    );
+  opacity: 0.3;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Floating accent elements */
+.slider-row::after {
+  content: '';
+  position: absolute;
+  top: 10%;
+  right: 15%;
+  width: 120px;
+  height: 120px;
+  background: linear-gradient(45deg, rgba(235, 94, 40, 0.08), rgba(235, 94, 40, 0.04));
   border-radius: 50%;
-  transition: background-color 0.3s ease;
+  filter: blur(40px);
+  animation: floatAccent 12s ease-in-out infinite;
+  z-index: 0;
+}
+
+@keyframes floatAccent {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.4; }
+  33% { transform: translate(-20px, -30px) scale(1.1); opacity: 0.6; }
+  66% { transform: translate(20px, -15px) scale(0.9); opacity: 0.3; }
+}
+
+.slider-card {
+  flex: 0 0 auto;
+  width: 240px;
+  height: 320px;
+  border-radius: 20px;
+  background: 
+    linear-gradient(145deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.7) 100%);
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  backdrop-filter: blur(20px) saturate(180%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  opacity: 0.6;
+  transform: scale(0.85);
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  overflow: hidden;
+  z-index: 2;
+  cursor: pointer;
+  box-shadow: 
+    0 6px 20px rgba(0, 0, 0, 0.08),
+    0 2px 6px rgba(235, 94, 40, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+/* Enhanced border animation */
+.slider-card::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: conic-gradient(
+    from 0deg at 50% 50%,
+    transparent 0deg,
+    rgba(235, 94, 40, 0.6) 60deg,
+    rgba(235, 94, 40, 0.8) 120deg,
+    transparent 180deg,
+    rgba(235, 94, 40, 0.4) 240deg,
+    rgba(235, 94, 40, 0.7) 300deg,
+    transparent 360deg
+  );
+  border-radius: 26px;
+  opacity: 0;
+  animation: rotateBorder 6s linear infinite;
+  z-index: -1;
+  transition: opacity 0.4s ease;
+}
+
+.slider-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
+  opacity: 0.6;
+}
+
+@keyframes rotateBorder {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.slider-card img {
+  width: 90%;
+  height: 90%;
+  object-fit: contain;
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  filter: 
+    drop-shadow(0 8px 16px rgba(0, 0, 0, 0.12))
+    drop-shadow(0 3px 6px rgba(235, 94, 40, 0.08));
+  transform: scale(0.95);
+}
+
+.slider-card.active {
+  transform: scale(1.15);
+  opacity: 1;
   z-index: 10;
-  user-select: none;
+  background: 
+    linear-gradient(145deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.85) 100%);
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.15),
+    0 10px 20px rgba(235, 94, 40, 0.2),
+    0 0 0 1px rgba(235, 94, 40, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    0 0 40px rgba(235, 94, 40, 0.2);
+  border: 2px solid rgba(235, 94, 40, 0.25);
 }
 
-.arrow:hover {
-  background-color: #ccc5b9;
-  color: #252422;
+.slider-card.active::before {
+  opacity: 1;
 }
 
-.left-arrow {
-  left: 10px;
+.slider-card.active img {
+  transform: scale(1);
+  filter: 
+    drop-shadow(0 12px 24px rgba(0, 0, 0, 0.18))
+    drop-shadow(0 4px 8px rgba(235, 94, 40, 0.15));
 }
 
-.right-arrow {
-  right: 10px;
+.slider-card:hover:not(.active) {
+  transform: scale(0.9);
+  opacity: 0.8;
+  box-shadow: 
+    0 8px 16px rgba(0, 0, 0, 0.12),
+    0 3px 8px rgba(235, 94, 40, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+.slider-card:hover:not(.active) img {
+  transform: scale(0.98);
+}
+
+/* Auto-rotation animation */
+.slider-row.auto-rotate {
+  animation: slideLeft 3s ease-in-out infinite;
+}
+
+@keyframes slideLeft {
+  0%, 85% { transform: translateX(0); }
+  95%, 100% { transform: translateX(-195px); }
+}
+
+/* Auto-highlight animation */
+.slider-card.auto-highlight {
+  animation: autoHighlight 3s ease-in-out infinite;
+}
+
+@keyframes autoHighlight {
+  0%, 20% { 
+    transform: scale(1.3);
+    opacity: 1;
+    z-index: 10;
+  }
+  80%, 100% { 
+    transform: scale(0.9);
+    opacity: 0.6;
+    z-index: 2;
+  }
+}
+
+/* Enhanced mobile responsiveness */
+@media (max-width: 1200px) {
+  .slider-row {
+    gap: 1.5rem;
+    padding: 3rem 1.5rem;
+  }
+  
+  .slider-card {
+    width: 200px;
+    height: 280px;
+  }
+}
+
+@media (max-width: 992px) {
+  .slider-row {
+    gap: 1.2rem;
+    padding: 3rem 1rem;
+    flex-wrap: wrap;
+  }
+  
+  .slider-card {
+    width: 180px;
+    height: 250px;
+  }
+  
+  .slider-card.active {
+    transform: scale(1.1);
+  }
+}
+
+@media (max-width: 768px) {
+  .slider-row {
+    gap: 1rem;
+    padding: 2.5rem 1rem;
+    min-height: 40vh;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .slider-card {
+    width: 160px;
+    height: 220px;
+    border-radius: 16px;
+  }
+  
+  .slider-card.active {
+    transform: scale(1.08);
+  }
+  
+  .slider-card:hover:not(.active) {
+    transform: scale(0.88);
+  }
+}
+
+@media (max-width: 576px) {
+  .slider-row {
+    gap: 0.8rem;
+    padding: 2rem 0.5rem;
+    min-height: 35vh;
+  }
+  
+  .slider-card {
+    width: 140px;
+    height: 190px;
+    border-radius: 14px;
+  }
+  
+  .slider-card.active {
+    transform: scale(1.05);
+  }
+}
+
+@media (max-width: 480px) {
+  .slider-row {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+    padding: 1.5rem 0.5rem;
+  }
+  
+  .slider-card {
+    width: 280px;
+    height: 200px;
+    border-radius: 12px;
+  }
+  
+  .slider-card.active {
+    transform: scale(1.03);
+  }
+  
+  .slider-card img {
+    width: 95%;
+    height: 95%;
+  }
+}
+
+/* Smooth scrollbar for horizontal scroll */
+.slider-row::-webkit-scrollbar {
+  height: 6px;
+}
+
+.slider-row::-webkit-scrollbar-track {
+  background: rgba(235, 94, 40, 0.05);
+  border-radius: 3px;
+}
+
+.slider-row::-webkit-scrollbar-thumb {
+  background: linear-gradient(90deg, rgba(235, 94, 40, 0.3), rgba(235, 94, 40, 0.6));
+  border-radius: 3px;
+  transition: background 0.3s ease;
+}
+
+.slider-row::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(90deg, rgba(235, 94, 40, 0.5), rgba(235, 94, 40, 0.8));
+}
+
+/* Optional: Add a subtle entrance animation */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.slider-card {
+  animation: slideIn 0.8s ease forwards;
+  animation-delay: calc(var(--card-index, 0) * 0.1s);
 }
