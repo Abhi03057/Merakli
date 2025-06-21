@@ -1,8 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,100..900;1,100..900&family=SUSE:wght@100..800&display=swap');
+
 .auth-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 70vh;
+  
 }
 
 .auth-box {
@@ -12,7 +15,7 @@
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   max-width: 400px;
   width: 100%;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "SUSE";
   text-align: center;
 }
 
@@ -41,10 +44,53 @@
   font-size: 1rem;
   border-radius: 8px;
   cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.auth-btn:hover {
+  background-color: #fff;
+  color: #eb5e28;
+  border: 2px solid #eb5e28;
+}
+
+.google-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background-color: #fff;
+  color: #444;
+  border: 2px solid #eb5e28;
+  border-radius: 8px;
+  padding: 0.9rem 1.2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 1.5rem;
+  width: 100%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  font-family: "SUSE";
+}
+
+.google-btn img {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+.google-btn:hover {
+  background-color: #eb5e28;
+  color: white;
+  box-shadow: 0 6px 16px rgba(235, 94, 40, 0.3);
+}
+
+.google-btn:hover img {
+  filter: brightness(0) invert(1);
 }
 
 .toggle-text {
-  margin-top: 1rem;
+  margin-top: 1.2rem;
   font-size: 0.95rem;
 }
 
@@ -52,27 +98,4 @@
   color: #eb5e28;
   cursor: pointer;
   font-weight: bold;
-}
-.auth-btn:hover {
-  background-color: #fff;
-  color: #eb5e28;
-  border: 2px solid #eb5e28;
-  transition: all 0.3s ease;
-}
-
-.google-btn {
-  background-color: #fff;
-  color: #444;
-  border: 2px solid #eb5e28;
-  border-radius: 8px;
-  padding: 0.8rem;
-  font-size: 1rem;
-  cursor: pointer;
-  margin-top: 1rem;
-  transition: 0.3s ease;
-}
-
-.google-btn:hover {
-  background-color: #eb5e28;
-  color: white;
 }

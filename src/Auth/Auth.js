@@ -24,16 +24,14 @@ function Auth() {
 
     try {
       if (isSignUp) {
-        // Firebase Email/Password Sign-Up
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
         console.log('User signed up:', userCredential.user);
       } else {
-        // Firebase Email/Password Sign-In
         const userCredential = await signInWithEmailAndPassword(auth, email, password);
         console.log('User signed in:', userCredential.user);
       }
 
-      navigate('/'); // redirect to homepage
+      navigate('/');
     } catch (error) {
       console.error('Auth error:', error.message);
       alert(error.message);
@@ -46,7 +44,7 @@ function Auth() {
       const result = await signInWithPopup(auth, provider);
       console.log('Google sign-in success:', result.user);
       alert('Logged in with Google: ' + result.user.email);
-      navigate('/'); // redirect to homepage
+      navigate('/');
     } catch (error) {
       console.error('Google sign-in error:', error.message);
       alert('Google sign-in failed: ' + error.message);
@@ -80,6 +78,10 @@ function Auth() {
         </form>
 
         <button className="google-btn" onClick={handleGoogleSignIn}>
+          <img
+            src="https://logos-world.net/wp-content/uploads/2020/09/Google-Symbol.png"
+            alt="Google"
+          />
           Sign in with Google
         </button>
 
