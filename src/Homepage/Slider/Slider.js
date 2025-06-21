@@ -7,7 +7,7 @@ import s25 from "./s25.png";
 import macbook from "./macbook.png";
 import sundress from "./sundress.png";
 
-const images = [watch, mattress, s25, macbook, sundress];
+const images = [watch, mattress, s25, sundress, macbook];
 
 function Slider() {
   const [current, setCurrent] = useState(0);
