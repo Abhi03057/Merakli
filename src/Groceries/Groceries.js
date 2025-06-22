@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import "../Clothing/Cloths/Cloths.css";
-import { useCart } from "../Cart/CartContext"; // ✅ Import cart context
+import { useCart } from "../Cart/CartContext";
+import Footer from "../Homepage/Footer/Footer";
 
 function Groceries() {
-  const { addToCart } = useCart(); // ✅ Get addToCart function from context
+  const { addToCart } = useCart();
 
   const initialItems = [
     {
@@ -121,6 +122,10 @@ function Groceries() {
 
       <div className={`custom-alert ${alert.visible ? "show" : ""}`}>
         {alert.message}
+      </div>
+
+      <div className="footer-wrapper">
+        <Footer />
       </div>
     </div>
   );

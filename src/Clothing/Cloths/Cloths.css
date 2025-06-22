@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,100..900;1,100..900&family=SUSE:wght@100..800&display=swap');
+
 /* Wrapper Styles */
 .cloths-wrapper {
   background: white;
@@ -6,7 +8,7 @@
   margin: 2rem auto;
   border-radius: 10px;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family:"SUSE";
 }
 
 /* Header Styles */
@@ -29,40 +31,107 @@
   flex-wrap: wrap;
 }
 
-/* Sidebar Styles */
+/* Enhanced Sidebar Styles */
 .sidebar {
-  width: 200px;
-  padding: 15px;
-  background-color: #f9f9f9;
-  border-radius: 10px;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  width: 220px;
+  padding: 20px;
+  background: linear-gradient(135deg, #fafafa 0%, #f5f5f5 100%);
+  border-radius: 15px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+  font-family: 'SUSE', sans-serif;
   flex-shrink: 0;
+  border: 1px solid rgba(235, 94, 40, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.sidebar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #eb5e28, #ff7043);
+  border-radius: 15px 15px 0 0;
 }
 
 .sidebar h3 {
-  margin-top: 0;
-  font-size: 1.1rem;
+  margin-top: 5px;
+  margin-bottom: 20px;
+  font-size: 1.25rem;
   color: #eb5e28;
+  font-weight: 700;
+  text-align: center;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+.sidebar h3::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 2px;
+  background: linear-gradient(90deg, #eb5e28, #ff7043);
+  border-radius: 2px;
 }
 
 .sidebar button {
   display: block;
-  margin: 10px 0;
-  padding: 10px;
+  margin: 8px 0;
+  padding: 12px 16px;
   width: 100%;
-  border: 2px solid #eb5e28;
-  background-color: #fff;
+  border: 2px solid transparent;
+  background: linear-gradient(135deg, #fff 0%, #fdfdfd 100%);
   color: #eb5e28;
   font-weight: 600;
-  border-radius: 5px;
+  font-size: 0.95rem;
+  border-radius: 10px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(235, 94, 40, 0.1);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.sidebar button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(235, 94, 40, 0.1), transparent);
+  transition: left 0.6s ease;
+}
+
+.sidebar button:hover::before {
+  left: 100%;
 }
 
 .sidebar button:hover {
-  background-color: #eb5e28;
+  background: linear-gradient(135deg, #eb5e28 0%, #ff7043 100%);
   color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(235, 94, 40, 0.3);
+  border-color: #eb5e28;
+}
+
+.sidebar button:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 12px rgba(235, 94, 40, 0.2);
+}
+
+.sidebar button.active {
+  background: linear-gradient(135deg, #eb5e28 0%, #ff7043 100%);
+  color: white;
+  box-shadow: 0 6px 16px rgba(235, 94, 40, 0.25);
+  border-color: #eb5e28;
 }
 
 /* Products Grid */
@@ -185,6 +254,13 @@
   right: 1rem;
 }
 
+.footer-wrapper {
+  margin-top: 4rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  background-color: #fff;
+}
+
 /* Responsive Media Queries */
 
 /* Medium screens (<= 1024px) */
@@ -206,11 +282,20 @@
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
+    padding: 15px;
+  }
+
+  .sidebar h3 {
+    width: 100%;
+    margin-bottom: 15px;
+    font-size: 1.1rem;
   }
 
   .sidebar button {
     flex: 1 1 calc(33.33% - 10px);
     margin: 0;
+    padding: 10px 12px;
+    font-size: 0.85rem;
   }
 
   .product-card {
@@ -228,6 +313,12 @@
 
 /* Extra small screens (<= 480px) */
 @media (max-width: 480px) {
+  .sidebar button {
+    flex: 1 1 calc(50% - 10px);
+    font-size: 0.8rem;
+    padding: 8px 10px;
+  }
+
   .product-card {
     width: 90%;
   }
@@ -255,4 +346,3 @@
     font-size: 0.9rem;
   }
 }
- 
