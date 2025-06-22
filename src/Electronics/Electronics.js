@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import "../Clothing/Cloths/Cloths.css";
 import "./Electronics.css";
-import { useCart } from "../Cart/CartContext"; // ✅ Import cart context
+import { useCart } from "../Cart/CartContext";
+import Footer from "../Homepage/Footer/Footer";
 
 function Electronics() {
   const [alert, setAlert] = useState({ message: "", visible: false });
   const [sortOption, setSortOption] = useState("");
   const [brandFilter, setBrandFilter] = useState("");
 
-  const { addToCart } = useCart(); // ✅ Get addToCart function from context
+  const { addToCart } = useCart();
 
   const showAlert = (message) => {
     setAlert({ message, visible: true });
@@ -16,7 +17,7 @@ function Electronics() {
   };
 
   const handleAddToCart = (product) => {
-    addToCart(product); // ✅ Add product to global cart
+    addToCart(product);
     showAlert(`"${product.name}" added to cart!`);
   };
 
@@ -78,55 +79,61 @@ function Electronics() {
   }
 
   return (
-    <div className="cloths-wrapper">
-      <div className="cloths-header">
-        <h1>Electronics</h1>
-        <p>Top gadgets and devices for your digital life!</p>
-      </div>
+    <>
+      <div className="cloths-wrapper">
+        <div className="cloths-header">
+          <h1>Electronics</h1>
+          <p>Top gadgets and devices for your digital life!</p>
+        </div>
 
-      <div className="content-container">
-        <aside className="sidebar">
-          <h3>Sort By</h3>
-          <select onChange={(e) => setSortOption(e.target.value)} value={sortOption}>
-            <option value="">Select</option>
-            <option value="low-to-high">Price: Low to High</option>
-            <option value="high-to-low">Price: High to Low</option>
-          </select>
+        <div className="content-container">
+          <aside className="sidebar">
+            <h3>Sort By</h3>
+            <select onChange={(e) => setSortOption(e.target.value)} value={sortOption}>
+              <option value="">Select</option>
+              <option value="low-to-high">Price: Low to High</option>
+              <option value="high-to-low">Price: High to Low</option>
+            </select>
 
-          <h3>Filter By Brand</h3>
-          <select onChange={(e) => setBrandFilter(e.target.value)} value={brandFilter}>
-            <option value="">All Brands</option>
-            {brands.map((brand, index) => (
-              <option key={index} value={brand}>
-                {brand}
-              </option>
-            ))}
-          </select>
-        </aside>
+            <h3>Filter By Brand</h3>
+            <select onChange={(e) => setBrandFilter(e.target.value)} value={brandFilter}>
+              <option value="">All Brands</option>
+              {brands.map((brand, index) => (
+                <option key={index} value={brand}>
+                  {brand}
+                </option>
+              ))}
+            </select>
+          </aside>
 
-        <div className="products-container">
-          {filteredProducts.map((product, index) => (
-            <div key={index} className="product-card">
-              <img src={product.img} alt={product.name} />
-              <h3>{product.name}</h3>
-              <p className="price">₹{product.price.toLocaleString()}</p>
-              <div className="buttons">
-                <button className="add-to-cart" onClick={() => handleAddToCart(product)}>
-                  Add to cart
-                </button>
-                <button className="wishlist-btn" onClick={() => handleAddToWishlist(product.name)}>
-                  ❤
-                </button>
+          <div className="products-container">
+            {filteredProducts.map((product, index) => (
+              <div key={index} className="product-card">
+                <img src={product.img} alt={product.name} />
+                <h3>{product.name}</h3>
+                <p className="price">₹{product.price.toLocaleString()}</p>
+                <div className="buttons">
+                  <button className="add-to-cart" onClick={() => handleAddToCart(product)}>
+                    Add to cart
+                  </button>
+                  <button className="wishlist-btn" onClick={() => handleAddToWishlist(product.name)}>
+                    ❤
+                  </button>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
+        </div>
+
+        <div className={`custom-alert ${alert.visible ? "show" : ""}`}>
+          {alert.message}
         </div>
       </div>
 
-      <div className={`custom-alert ${alert.visible ? "show" : ""}`}>
-        {alert.message}
+      <div className="footer-fullwidth">
+        <Footer />
       </div>
-    </div>
+    </>
   );
 }
 

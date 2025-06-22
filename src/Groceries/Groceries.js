@@ -80,54 +80,57 @@ function Groceries() {
   };
 
   return (
-    <div className="cloths-wrapper">
-      <div className="cloths-header">
-        <h1>Grocery Essentials</h1>
-        <p>Shop daily needs at unbeatable prices.</p>
-      </div>
+    <>
+      <div className="cloths-wrapper">
+        <div className="cloths-header">
+          <h1>Grocery Essentials</h1>
+          <p>Shop daily needs at unbeatable prices.</p>
+        </div>
 
-      <div className="content-container">
-        <aside className="sidebar">
-          <h3>Sort By</h3>
-          <button onClick={() => handleSort("low-to-high")}>Price: Low to High</button>
-          <button onClick={() => handleSort("high-to-low")}>Price: High to Low</button>
+        <div className="content-container">
+          <aside className="sidebar">
+            <h3>Sort By</h3>
+            <button onClick={() => handleSort("low-to-high")}>Price: Low to High</button>
+            <button onClick={() => handleSort("high-to-low")}>Price: High to Low</button>
 
-          <h3>Filter By Category</h3>
-          <button onClick={() => handleFilter("Grains")}>Grains</button>
-          <button onClick={() => handleFilter("Flour")}>Flour</button>
-          <button onClick={() => handleFilter("Spices")}>Spices</button>
-          <button onClick={() => handleFilter("Dairy")}>Dairy</button>
-          <button onClick={() => handleFilter("Beverages")}>Beverages</button>
-          <button onClick={resetFilter}>Show All</button>
-        </aside>
+            <h3>Filter By Category</h3>
+            <button onClick={() => handleFilter("Grains")}>Grains</button>
+            <button onClick={() => handleFilter("Flour")}>Flour</button>
+            <button onClick={() => handleFilter("Spices")}>Spices</button>
+            <button onClick={() => handleFilter("Dairy")}>Dairy</button>
+            <button onClick={() => handleFilter("Beverages")}>Beverages</button>
+            <button onClick={resetFilter}>Show All</button>
+          </aside>
 
-        <div className="products-container">
-          {items.map((item, idx) => (
-            <div className="product-card" key={idx}>
-              <img src={item.img} alt={item.name} />
-              <h3>{item.name}</h3>
-              <p className="price">₹{item.price.toLocaleString()}</p>
-              <div className="buttons">
-                <button className="add-to-cart" onClick={() => handleAddToCart(item)}>
-                  Add to Cart
-                </button>
-                <button className="wishlist-btn" onClick={() => handleAddToWishlist(item.name)}>
-                  ❤
-                </button>
+          <div className="products-container">
+            {items.map((item, idx) => (
+              <div className="product-card" key={idx}>
+                <img src={item.img} alt={item.name} />
+                <h3>{item.name}</h3>
+                <p className="price">₹{item.price.toLocaleString()}</p>
+                <div className="buttons">
+                  <button className="add-to-cart" onClick={() => handleAddToCart(item)}>
+                    Add to Cart
+                  </button>
+                  <button className="wishlist-btn" onClick={() => handleAddToWishlist(item.name)}>
+                    ❤
+                  </button>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
+        </div>
+
+        <div className={`custom-alert ${alert.visible ? "show" : ""}`}>
+          {alert.message}
         </div>
       </div>
 
-      <div className={`custom-alert ${alert.visible ? "show" : ""}`}>
-        {alert.message}
-      </div>
-
-      <div className="footer-wrapper">
+      {/* Footer is OUTSIDE the grocery content */}
+      <div className="footer-fullwidth">
         <Footer />
       </div>
-    </div>
+    </>
   );
 }
 

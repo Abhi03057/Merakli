@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import "../Clothing/Cloths/Cloths.css";
 import "./Home.css";
-import { useCart } from "../Cart/CartContext"; // ✅ Import useCart
+import { useCart } from "../Cart/CartContext";
+import Footer from "../Homepage/Footer/Footer";
 
 function Home() {
-  const { addToCart } = useCart(); // ✅ Access global addToCart
+  const { addToCart } = useCart();
   const [sortOrder, setSortOrder] = useState("");
   const [brandFilter, setBrandFilter] = useState("");
-  const [alert, setAlert] = useState({ message: "", visible: false }); // ✅ Alert state
+  const [alert, setAlert] = useState({ message: "", visible: false });
 
   const products = [
     {
@@ -49,7 +50,7 @@ function Home() {
   ];
 
   const handleAddToCart = (product) => {
-    addToCart(product); // ✅ Use global context
+    addToCart(product);
     showAlert(`"${product.name}" added to cart!`);
   };
 
@@ -73,57 +74,60 @@ function Home() {
   const uniqueBrands = [...new Set(products.map((p) => p.brand))];
 
   return (
-    <div className="cloths-wrapper">
-      <div className="cloths-header">
-        <h1>Home & Furniture</h1>
-        <p>Furniture and more for your perfect home!</p>
-      </div>
+    <>
+      <div className="cloths-wrapper">
+        <div className="cloths-header">
+          <h1>Home & Furniture</h1>
+          <p>Furniture and more for your perfect home!</p>
+        </div>
 
-      <div className="content">
-        {/* Sidebar */}
-        <aside className="sidebar">
-          <h3>Sort by Price</h3>
-          <button onClick={() => setSortOrder("low-to-high")}>Low to High</button>
-          <button onClick={() => setSortOrder("high-to-low")}>High to Low</button>
+        <div className="content">
+          <aside className="sidebar">
+            <h3>Sort by Price</h3>
+            <button onClick={() => setSortOrder("low-to-high")}>Low to High</button>
+            <button onClick={() => setSortOrder("high-to-low")}>High to Low</button>
 
-          <h3>Filter by Brand</h3>
-          <select onChange={(e) => setBrandFilter(e.target.value)} value={brandFilter}>
-            <option value="">All Brands</option>
-            {uniqueBrands.map((brand, i) => (
-              <option key={i} value={brand}>{brand}</option>
-            ))}
-          </select>
-        </aside>
+            <h3>Filter by Brand</h3>
+            <select onChange={(e) => setBrandFilter(e.target.value)} value={brandFilter}>
+              <option value="">All Brands</option>
+              {uniqueBrands.map((brand, i) => (
+                <option key={i} value={brand}>{brand}</option>
+              ))}
+            </select>
+          </aside>
 
-        {/* Product Cards */}
-        <div className="products-container">
-          {sortedProducts.map((product, index) => (
-            <div key={index} className="product-card">
-              <img src={product.img} alt={product.name} />
-              <h3>{product.name}</h3>
-              <p className="price">₹{product.price.toLocaleString()}</p>
-              <div className="buttons">
-                <button className="add-to-cart" onClick={() => handleAddToCart(product)}>
-                  Add to cart
-                </button>
-                <button
-                  className="wishlist-btn"
-                  onClick={() => handleAddToWishlist(product.name)}
-                  aria-label="Add to wishlist"
-                >
-                  ❤
-                </button>
+          <div className="products-container">
+            {sortedProducts.map((product, index) => (
+              <div key={index} className="product-card">
+                <img src={product.img} alt={product.name} />
+                <h3>{product.name}</h3>
+                <p className="price">₹{product.price.toLocaleString()}</p>
+                <div className="buttons">
+                  <button className="add-to-cart" onClick={() => handleAddToCart(product)}>
+                    Add to cart
+                  </button>
+                  <button
+                    className="wishlist-btn"
+                    onClick={() => handleAddToWishlist(product.name)}
+                    aria-label="Add to wishlist"
+                  >
+                    ❤
+                  </button>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
+        </div>
+
+        <div className={`custom-alert ${alert.visible ? "show" : ""}`}>
+          {alert.message}
         </div>
       </div>
 
-      {/* Alert */}
-      <div className={`custom-alert ${alert.visible ? "show" : ""}`}>
-        {alert.message}
+      <div className="footer-fullwidth">
+        <Footer />
       </div>
-    </div>
+    </>
   );
 }
 

@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import "../Clothing/Cloths/Cloths.css";
-import { useCart } from "../Cart/CartContext"; // 👈 import cart context
+import { useCart } from "../Cart/CartContext";
+import Footer from "../Homepage/Footer/Footer";
 
 function Appliances() {
   const [sortOrder, setSortOrder] = useState("");
   const [brandFilter, setBrandFilter] = useState("");
 
-  const { addToCart } = useCart(); // 👈 use addToCart from context
+  const { addToCart } = useCart();
 
   const products = [
     {
@@ -48,7 +49,7 @@ function Appliances() {
   ];
 
   const handleAddToCart = (product) => {
-    addToCart(product); // 👈 global cart logic
+    addToCart(product);
   };
 
   const handleAddToWishlist = (name) => {
@@ -66,54 +67,58 @@ function Appliances() {
   const uniqueBrands = [...new Set(products.map((p) => p.brand))];
 
   return (
-    <div className="cloths-wrapper">
-      <div className="cloths-header">
-        <h1>Appliances</h1>
-        <p>Essential appliances for your home and kitchen!</p>
-      </div>
+    <>
+      <div className="cloths-wrapper">
+        <div className="cloths-header">
+          <h1>Appliances</h1>
+          <p>Essential appliances for your home and kitchen!</p>
+        </div>
 
-      <div className="content">
-        {/* Sidebar */}
-        <aside className="sidebar">
-          <h3>Sort by Price</h3>
-          <button onClick={() => setSortOrder("low-to-high")}>Low to High</button>
-          <button onClick={() => setSortOrder("high-to-low")}>High to Low</button>
+        <div className="content">
+          <aside className="sidebar">
+            <h3>Sort by Price</h3>
+            <button onClick={() => setSortOrder("low-to-high")}>Low to High</button>
+            <button onClick={() => setSortOrder("high-to-low")}>High to Low</button>
 
-          <h3>Filter by Brand</h3>
-          <select value={brandFilter} onChange={(e) => setBrandFilter(e.target.value)}>
-            <option value="">All Brands</option>
-            {uniqueBrands.map((brand, idx) => (
-              <option key={idx} value={brand}>
-                {brand}
-              </option>
-            ))}
-          </select>
-        </aside>
+            <h3>Filter by Brand</h3>
+            <select value={brandFilter} onChange={(e) => setBrandFilter(e.target.value)}>
+              <option value="">All Brands</option>
+              {uniqueBrands.map((brand, idx) => (
+                <option key={idx} value={brand}>
+                  {brand}
+                </option>
+              ))}
+            </select>
+          </aside>
 
-        {/* Product Cards */}
-        <div className="products-container">
-          {sortedProducts.map((product, index) => (
-            <div key={index} className="product-card">
-              <img src={product.img} alt={product.name} />
-              <h3>{product.name}</h3>
-              <p className="price">₹{product.price.toLocaleString()}</p>
-              <div className="buttons">
-                <button className="add-to-cart" onClick={() => handleAddToCart(product)}>
-                  Add to cart
-                </button>
-                <button
-                  className="wishlist-btn"
-                  onClick={() => handleAddToWishlist(product.name)}
-                  aria-label="Add to wishlist"
-                >
-                  ❤
-                </button>
+          <div className="products-container">
+            {sortedProducts.map((product, index) => (
+              <div key={index} className="product-card">
+                <img src={product.img} alt={product.name} />
+                <h3>{product.name}</h3>
+                <p className="price">₹{product.price.toLocaleString()}</p>
+                <div className="buttons">
+                  <button className="add-to-cart" onClick={() => handleAddToCart(product)}>
+                    Add to cart
+                  </button>
+                  <button
+                    className="wishlist-btn"
+                    onClick={() => handleAddToWishlist(product.name)}
+                    aria-label="Add to wishlist"
+                  >
+                    ❤
+                  </button>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
-    </div>
+
+      <div className="footer-fullwidth">
+        <Footer />
+      </div>
+    </>
   );
 }
 

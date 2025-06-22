@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import "./Cloths.css";
 import { useCart } from '../../Cart/CartContext';
-
+import Footer from '../../Homepage/Footer/Footer'; // ✅ Import footer
 
 function Cloths() {
   const [alert, setAlert] = useState({ message: "", visible: false });
   const [sortType, setSortType] = useState("");
   const [filterCategory, setFilterCategory] = useState("All");
 
-  const { addToCart } = useCart(); // 👈 get addToCart from context
+  const { addToCart } = useCart();
 
   const showAlert = (message) => {
     setAlert({ message, visible: true });
@@ -16,7 +16,7 @@ function Cloths() {
   };
 
   const handleAddToCart = (product) => {
-    addToCart(product); // 👈 Add to global cart
+    addToCart(product);
     showAlert(`"${product.name}" added to cart!`);
   };
 
@@ -94,48 +94,55 @@ function Cloths() {
     });
 
   return (
-    <div className="cloths-wrapper">
-      <div className="cloths-header">
-        <h1>Fashion Section</h1>
-        <p>Explore our latest clothing collection!</p>
-      </div>
+    <>
+      <div className="cloths-wrapper">
+        <div className="cloths-header">
+          <h1>Fashion Section</h1>
+          <p>Explore our latest clothing collection!</p>
+        </div>
 
-      <div className="content-container">
-        <aside className="sidebar">
-          <h3>Sort By</h3>
-          <button onClick={() => setSortType("lowToHigh")}>Price: Low to High</button>
-          <button onClick={() => setSortType("highToLow")}>Price: High to Low</button>
+        <div className="content-container">
+          <aside className="sidebar">
+            <h3>Sort By</h3>
+            <button onClick={() => setSortType("lowToHigh")}>Price: Low to High</button>
+            <button onClick={() => setSortType("highToLow")}>Price: High to Low</button>
 
-          <h3>Filter By Category</h3>
-          <button onClick={() => setFilterCategory("All")}>All</button>
-          <button onClick={() => setFilterCategory("Male")}>Men's Fashion</button>
-          <button onClick={() => setFilterCategory("Female")}>Women's Fashion</button>
-        </aside>
+            <h3>Filter By Category</h3>
+            <button onClick={() => setFilterCategory("All")}>All</button>
+            <button onClick={() => setFilterCategory("Male")}>Men's Fashion</button>
+            <button onClick={() => setFilterCategory("Female")}>Women's Fashion</button>
+          </aside>
 
-        <div className="products-container">
-          {sortedFilteredProducts.map((product, i) => (
-            <div key={i} className="product-card">
-              <img src={product.img} alt={product.name} />
-              <h3>{product.name}</h3>
-              <p className="price">₹{product.price}</p>
-              <p className="sizes">Sizes: {product.sizes.join(", ")}</p>
-              <div className="buttons">
-                <button className="add-to-cart" onClick={() => handleAddToCart(product)}>
-                  Add to cart
-                </button>
-                <button className="wishlist-btn" onClick={() => handleAddToWishlist(product.name)}>
-                  ❤
-                </button>
+          <div className="products-container">
+            {sortedFilteredProducts.map((product, i) => (
+              <div key={i} className="product-card">
+                <img src={product.img} alt={product.name} />
+                <h3>{product.name}</h3>
+                <p className="price">₹{product.price}</p>
+                <p className="sizes">Sizes: {product.sizes.join(", ")}</p>
+                <div className="buttons">
+                  <button className="add-to-cart" onClick={() => handleAddToCart(product)}>
+                    Add to cart
+                  </button>
+                  <button className="wishlist-btn" onClick={() => handleAddToWishlist(product.name)}>
+                    ❤
+                  </button>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
+        </div>
+
+        <div className={`custom-alert ${alert.visible ? "show" : ""}`}>
+          {alert.message}
         </div>
       </div>
 
-      <div className={`custom-alert ${alert.visible ? "show" : ""}`}>
-        {alert.message}
+      {/* ✅ Full-width footer outside main wrapper */}
+      <div className="footer-fullwidth">
+        <Footer />
       </div>
-    </div>
+    </>
   );
 }
 

@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import "../Clothing/Cloths/Cloths.css";
-import { useCart } from "../Cart/CartContext"; // ✅ Import cart context
+import { useCart } from "../Cart/CartContext";
+import Footer from "../Homepage/Footer/Footer";
 
 function Mobiles() {
-  const { addToCart } = useCart(); // ✅ Get addToCart function
+  const { addToCart } = useCart();
+
   const initialProducts = [
     {
       img: "https://www.dpreview.com/files/p/articles/3945272296/iPhone/Apple-iphone-16-event-021.jpeg",
@@ -75,52 +77,55 @@ function Mobiles() {
   const resetFilter = () => setProducts(initialProducts);
 
   return (
-    <div className="cloths-wrapper">
-      <div className="cloths-header">
-        <h1>Mobiles</h1>
-        <p>Explore the latest smartphones at unbeatable prices!</p>
-      </div>
+    <>
+      <div className="cloths-wrapper">
+        <div className="cloths-header">
+          <h1>Mobiles</h1>
+          <p>Explore the latest smartphones at unbeatable prices!</p>
+        </div>
 
-      <div className="content-container">
-        {/* Sidebar */}
-        <aside className="sidebar">
-          <h3>Sort By</h3>
-          <button onClick={() => handleSort("low-to-high")}>Price: Low to High</button>
-          <button onClick={() => handleSort("high-to-low")}>Price: High to Low</button>
+        <div className="content-container">
+          <aside className="sidebar">
+            <h3>Sort By</h3>
+            <button onClick={() => handleSort("low-to-high")}>Price: Low to High</button>
+            <button onClick={() => handleSort("high-to-low")}>Price: High to Low</button>
 
-          <h3>Filter By Brand</h3>
-          <button onClick={() => handleBrandFilter("Apple")}>Apple</button>
-          <button onClick={() => handleBrandFilter("Samsung")}>Samsung</button>
-          <button onClick={() => handleBrandFilter("Google")}>Google</button>
-          <button onClick={() => handleBrandFilter("Oppo")}>Oppo</button>
-          <button onClick={resetFilter}>Show All</button>
-        </aside>
+            <h3>Filter By Brand</h3>
+            <button onClick={() => handleBrandFilter("Apple")}>Apple</button>
+            <button onClick={() => handleBrandFilter("Samsung")}>Samsung</button>
+            <button onClick={() => handleBrandFilter("Google")}>Google</button>
+            <button onClick={() => handleBrandFilter("Oppo")}>Oppo</button>
+            <button onClick={resetFilter}>Show All</button>
+          </aside>
 
-        {/* Product Grid */}
-        <div className="products-container">
-          {products.map((product, idx) => (
-            <div className="product-card" key={idx}>
-              <img src={product.img} alt={product.name} />
-              <h3>{product.name}</h3>
-              <p className="price">₹{product.price.toLocaleString()}</p>
-              <div className="buttons">
-                <button className="add-to-cart" onClick={() => handleAddToCart(product)}>
-                  Add to Cart
-                </button>
-                <button className="wishlist-btn" onClick={() => handleAddToWishlist(product.name)}>
-                  ❤
-                </button>
+          <div className="products-container">
+            {products.map((product, idx) => (
+              <div className="product-card" key={idx}>
+                <img src={product.img} alt={product.name} />
+                <h3>{product.name}</h3>
+                <p className="price">₹{product.price.toLocaleString()}</p>
+                <div className="buttons">
+                  <button className="add-to-cart" onClick={() => handleAddToCart(product)}>
+                    Add to Cart
+                  </button>
+                  <button className="wishlist-btn" onClick={() => handleAddToWishlist(product.name)}>
+                    ❤
+                  </button>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
+        </div>
+
+        <div className={`custom-alert ${alert.visible ? "show" : ""}`}>
+          {alert.message}
         </div>
       </div>
 
-      {/* Alert Message */}
-      <div className={`custom-alert ${alert.visible ? "show" : ""}`}>
-        {alert.message}
+      <div className="footer-fullwidth">
+        <Footer />
       </div>
-    </div>
+    </>
   );
 }
 
