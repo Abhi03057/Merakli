@@ -1,46 +1,220 @@
+@import url('https://fonts.googleapis.com/css2?family=SUSE:wght@100..800&display=swap');
+
 .ads-wrapper {
-  background-color: #ffffff;
+  background: linear-gradient(135deg, #ffffff 0%, #fafafa 100%);
   padding: 4vh 5vw;
   margin: 5vh auto;
   max-width: 1200px;
-  border-radius: 10px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-  
+  border-radius: 16px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.06);
+  position: relative;
+  overflow: hidden;
+}
+
+.ads-wrapper::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #eb5e28, #ff7b47, #eb5e28);
+  background-size: 200% 100%;
+  animation: gradientShift 3s ease-in-out infinite;
+}
+
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 0%; }
+  50% { background-position: 100% 0%; }
 }
 
 .ads-heading {
-  font-size: 2rem;
+  font-size: 2.2rem;
   text-align: center;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
   font-family: 'SUSE', sans-serif;
   color: #eb5e28;
+  font-weight: 700;
+  position: relative;
+  letter-spacing: -0.02em;
+}
+
+.ads-heading::after {
+  content: '';
+  position: absolute;
+  bottom: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(90deg, #eb5e28, #ff7b47);
+  border-radius: 2px;
 }
 
 .ads-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
   justify-content: center;
+  align-items: start;
 }
 
 .ad-image {
   width: 100%;
-  max-width: 550px;
-  height: auto;
-  border-radius: 10px;
+  height: 280px;
+  border-radius: 12px;
   object-fit: cover;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
+  box-shadow: 0 6px 20px rgba(235, 94, 40, 0.12);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.ad-image::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(235, 94, 40, 0.1) 0%, transparent 50%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
 }
 
 .ad-image:hover {
-  transform: scale(1.03);
-  cursor: pointer;
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 12px 35px rgba(235, 94, 40, 0.2);
 }
 
-/* Responsive */
-@media (max-width: 768px) {
+.ad-image:hover::before {
+  opacity: 1;
+}
+
+.ad-image:active {
+  transform: translateY(-4px) scale(1.01);
+}
+
+/* Loading state for images */
+.ad-image {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+.ad-image[src] {
+  background: none;
+  animation: none;
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Focus states for accessibility */
+.ad-image:focus {
+  outline: 3px solid #eb5e28;
+  outline-offset: 4px;
+}
+
+.ad-image:focus-visible {
+  outline: 3px solid #eb5e28;
+  outline-offset: 4px;
+}
+
+/* Enhanced responsive design */
+@media (max-width: 1024px) {
+  .ads-wrapper {
+    padding: 3vh 4vw;
+    margin: 4vh auto;
+  }
+  
+  .ads-heading {
+    font-size: 2rem;
+    margin-bottom: 32px;
+  }
+  
+  .ads-container {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+  }
+  
   .ad-image {
+    height: 260px;
+  }
+}
+
+@media (max-width: 768px) {
+  .ads-wrapper {
+    padding: 2.5vh 4vw;
+    margin: 3vh auto;
+    border-radius: 12px;
+  }
+  
+  .ads-heading {
+    font-size: 1.8rem;
+    margin-bottom: 28px;
+  }
+  
+  .ads-container {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 18px;
+  }
+  
+  .ad-image {
+    height: 240px;
+    border-radius: 10px;
+  }
+  
+  .ad-image:hover {
+    transform: translateY(-4px) scale(1.01);
+  }
+}
+
+@media (max-width: 480px) {
+  .ads-wrapper {
+    padding: 2vh 3vw;
+    margin: 2vh auto;
+  }
+  
+  .ads-heading {
+    font-size: 1.6rem;
+    margin-bottom: 24px;
+  }
+  
+  .ads-container {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  
+  .ad-image {
+    height: 220px;
     max-width: 100%;
+  }
+}
+
+/* Removed problematic animation - images always visible */
+.ad-image {
+  opacity: 1;
+  /* All other styles remain the same */
+}
+
+/* Prevent animation on reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .ad-image {
+    animation: none;
+    opacity: 1;
+    transition: transform 0.2s ease;
+  }
+  
+  .ads-wrapper::before {
+    animation: none;
+  }
+  
+  .ad-image:hover {
+    transform: scale(1.01);
   }
 }

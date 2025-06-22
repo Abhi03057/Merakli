@@ -26,17 +26,22 @@ function Slider() {
   };
 
   return (
-    <div className="slider-row">
-      {images.map((img, index) => (
-        <div
-          key={index}
-          className={`slider-card ${index === current ? "active" : ""}`}
-        >
-          <img src={img} alt={`Slide ${index + 1}`} />
-        </div>
-      ))}
+    <div className="slider-section">
+      <h2 className="slider-heading"> Only at <span>Merakli</span> – Hottest Picks!</h2>
+      <div className="slider-row">
+        {images.map((img, index) => (
+          <div
+            key={index}
+            className={`slider-card ${index === current ? "active" : ""}`}
+            style={{ '--card-index': index }}
+          >
+            <img src={img} alt={`Slide ${index + 1}`} />
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
+
 
 export default Slider;
