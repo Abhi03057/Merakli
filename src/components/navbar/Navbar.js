@@ -5,7 +5,7 @@ import { useAuth } from '../../context/AuthContext';
 import { getAuth, signOut } from 'firebase/auth';
 
 function Navbar() {
-  const { user } = useAuth(); 
+  const { user } = useAuth();
 
   const handleLogout = () => {
     const auth = getAuth();
@@ -43,12 +43,12 @@ function Navbar() {
                     {user.displayName || user.email.split('@')[0]}
                   </button>
                   <ul className="dropdown">
-                    <li><a href="#">Your Orders</a></li>
-                    <li><a href="#">Profile</a></li>
-                    <li><a href="#">Wishlist</a></li>
-                    <li><a href="#">Rewards</a></li>
-                    <li><a href="#">Coupons</a></li>
-                    <li onClick={handleLogout}><a href="#">Logout</a></li>
+                    <li>
+                      <Link to="/cart">Your Orders</Link>
+                    </li>
+                    <li onClick={handleLogout}>
+                      <a href="#">Logout</a>
+                    </li>
                   </ul>
                 </>
               ) : (
@@ -57,8 +57,12 @@ function Navbar() {
                     <i className="fa-solid fa-user icon-style"></i>
                   </button>
                   <ul className="dropdown">
-                    <li><Link to="/auth">New Customer? Sign Up</Link></li>
-                    <li><a href="#">Your Orders</a></li>
+                    <li>
+                      <Link to="/auth">New Customer? Sign Up</Link>
+                    </li>
+                    <li>
+                      <Link to="/cart">Your Orders</Link>
+                    </li>
                     <li><a href="#">Profile</a></li>
                     <li><a href="#">Wishlist</a></li>
                     <li><a href="#">Rewards</a></li>
