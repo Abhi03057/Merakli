@@ -46,8 +46,10 @@ function Navbar() {
                     <li>
                       <Link to="/cart">Your Orders</Link>
                     </li>
-                    <li onClick={handleLogout}>
-                      <a href="#">Logout</a>
+                    <li>
+                      <button onClick={handleLogout} className="nav-btn dropdown-link">
+                        Logout
+                      </button>
                     </li>
                   </ul>
                 </>
@@ -63,10 +65,18 @@ function Navbar() {
                     <li>
                       <Link to="/cart">Your Orders</Link>
                     </li>
-                    <li><a href="#">Profile</a></li>
-                    <li><a href="#">Wishlist</a></li>
-                    <li><a href="#">Rewards</a></li>
-                    <li><a href="#">Coupons</a></li>
+                    <li>
+                      <button className="nav-btn dropdown-link">Profile</button>
+                    </li>
+                    <li>
+                      <button className="nav-btn dropdown-link">Wishlist</button>
+                    </li>
+                    <li>
+                      <button className="nav-btn dropdown-link">Rewards</button>
+                    </li>
+                    <li>
+                      <button className="nav-btn dropdown-link">Coupons</button>
+                    </li>
                   </ul>
                 </>
               )}
