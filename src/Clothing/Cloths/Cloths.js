@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./Cloths.css";
-import { useCart } from '../../Cart/CartContext';
-import Footer from '../../Homepage/Footer/Footer'; // ✅ Import footer
+import { useCart } from "../../Cart/CartContext";
+import Footer from "../../Homepage/Footer/Footer"; // ✅ Import footer
 
 function Cloths() {
   const [alert, setAlert] = useState({ message: "", visible: false });
@@ -17,11 +17,11 @@ function Cloths() {
 
   const handleAddToCart = (product) => {
     addToCart(product);
-    showAlert(`"${product.name}" added to cart!`);
+    showAlert(`${product.name} added to cart!`);
   };
 
   const handleAddToWishlist = (name) => {
-    showAlert(`"${name}" added to wishlist!`);
+    showAlert(`${name} added to wishlist!`);
   };
 
   const products = [
@@ -104,13 +104,21 @@ function Cloths() {
         <div className="content-container">
           <aside className="sidebar">
             <h3>Sort By</h3>
-            <button onClick={() => setSortType("lowToHigh")}>Price: Low to High</button>
-            <button onClick={() => setSortType("highToLow")}>Price: High to Low</button>
+            <button onClick={() => setSortType("lowToHigh")}>
+              Price: Low to High
+            </button>
+            <button onClick={() => setSortType("highToLow")}>
+              Price: High to Low
+            </button>
 
             <h3>Filter By Category</h3>
             <button onClick={() => setFilterCategory("All")}>All</button>
-            <button onClick={() => setFilterCategory("Male")}>Men's Fashion</button>
-            <button onClick={() => setFilterCategory("Female")}>Women's Fashion</button>
+            <button onClick={() => setFilterCategory("Male")}>
+              Men's Fashion
+            </button>
+            <button onClick={() => setFilterCategory("Female")}>
+              Women's Fashion
+            </button>
           </aside>
 
           <div className="products-container">
@@ -121,10 +129,16 @@ function Cloths() {
                 <p className="price">₹{product.price}</p>
                 <p className="sizes">Sizes: {product.sizes.join(", ")}</p>
                 <div className="buttons">
-                  <button className="add-to-cart" onClick={() => handleAddToCart(product)}>
+                  <button
+                    className="add-to-cart"
+                    onClick={() => handleAddToCart(product)}
+                  >
                     Add to cart
                   </button>
-                  <button className="wishlist-btn" onClick={() => handleAddToWishlist(product.name)}>
+                  <button
+                    className="wishlist-btn"
+                    onClick={() => handleAddToWishlist(product.name)}
+                  >
                     ❤
                   </button>
                 </div>

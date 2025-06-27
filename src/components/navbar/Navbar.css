@@ -124,11 +124,16 @@
 }
 
 .dropdown li a {
+  display: flex;
+  align-items: center;
+  padding: 10px 16px;
   color: #333;
   text-decoration: none;
-  display: block;
+  font-size: 0.95rem;
+  font-family: "SUSE";
   width: 100%;
 }
+
 
 /* Show dropdown on hover */
 .dropdown-parent:hover .dropdown {
@@ -258,4 +263,38 @@
   border-radius: 20px !important;
   padding: 8px 16px !important;
   min-width: unset !important;
+}
+
+/* Override dropdown button look to match anchor links */
+.dropdown li button {
+  all: unset;
+  width: 100%;
+  font-family: "SUSE";
+  font-size: 0.95rem;
+  color: #333;
+  padding: 10px 16px;
+  cursor: pointer;
+  display: flex;            /* Flexbox to center text */
+  align-items: center;      /* Vertically center */
+  line-height: 1.4; 
+  text-align: center;        /* Ensures better vertical spacing */
+}
+
+/* Hover effect (same as <a>) */
+.dropdown li button:hover {
+  background-color: #f5f5f5;
+  color: #000;
+}
+
+/* Remove rounded/oval button styles */
+.dropdown-link,
+.username-btn {
+  all: unset;
+  display: block;
+  font-family: "SUSE";
+  color: #333;
+  font-size: 0.95rem;
+  padding: 10px 16px;
+  cursor: pointer;
+  width: 100%;
 }
