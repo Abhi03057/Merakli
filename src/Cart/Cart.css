@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,100..900;1,100..900&family=SUSE:wght@100..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Open+Sans&family=Roboto&family=SUSE:wght@100..800&display=swap');
 
 .cart-wrapper {
   max-width: 1000px;
@@ -30,31 +30,51 @@
   border-radius: 8px;
 }
 
-.details h3 {
-  margin: 0;
+.item-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex: 1;
 }
 
-.empty-msg {
-  text-align: center;
-  font-size: 1.3rem;
-  color: #777;
+.left {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
-.checkout-btn {
-  background-color: #eb5e28;
-  color: white;
-  padding: 12px 25px;
-  border: none;
-  border-radius: 8px;
-  font-size: 1rem;
-  font-weight: 500;
+.right .price {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.qty-control {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.qty-btn {
+  background-color: #ffe6dc;
+  border: 2px solid #cf501f;
+  color: #cf501f;
+  font-size: 1.1rem;
+  padding: 4px 10px;
+  border-radius: 6px;
   cursor: pointer;
-  margin-top: 20px;
-  transition: background-color 0.3s ease;
+  font-weight: bold;
+  transition: background-color 0.2s, color 0.2s;
 }
 
-.checkout-btn:hover {
+.qty-btn:hover {
   background-color: #cf501f;
+  color: white;
+}
+
+.qty-count {
+  font-size: 1.1rem;
+  font-weight: 500;
 }
 
 .remove-btn {
@@ -75,4 +95,39 @@
 .remove-btn:hover {
   background-color: #cf501f;
   transform: translateY(-1px);
+}
+
+.cart-summary-right {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 2rem;
+  gap: 1.5rem;
+}
+
+.cart-summary-right h3 {
+  font-size: 1.5rem;
+  color: #222;
+}
+
+.checkout-btn {
+  background-color: #eb5e28;
+  color: white;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.checkout-btn:hover {
+  background-color: #cf501f;
+}
+
+.empty-cart {
+  text-align: center;
+  font-size: 1.3rem;
+  color: #777;
 }

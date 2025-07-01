@@ -1,4 +1,4 @@
-// src/Cart/cartcontext.js
+// src/Cart/CartContext.js
 import React, { createContext, useState, useContext } from "react";
 
 const CartContext = createContext();
@@ -32,8 +32,26 @@ export function CartProvider({ children }) {
     });
   };
 
+  // ✅ NEW: Function to update quantity directly
+  const updateQuantity = (productName, quantity) => {
+    setCartItems((prev) =>
+      prev.map((item) =>
+        item.name === productName
+          ? { ...item, quantity: Math.max(1, quantity) }
+          : item
+      )
+    );
+  };
+
   return (
-    <CartContext.Provider value={{ cartItems, addToCart, removeFromCart }}>
+    <CartContext.Provider
+      value={{
+        cartItems,
+        addToCart,
+        removeFromCart,
+        updateQuantity, 
+      }}
+    >
       {children}
     </CartContext.Provider>
   );
