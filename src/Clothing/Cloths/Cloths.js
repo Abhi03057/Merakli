@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import "./Cloths.css";
 import { useCart } from "../../Cart/CartContext";
-import Footer from "../../Homepage/Footer/Footer"; // ✅ Import footer
+import Footer from "../../Homepage/Footer/Footer";
 
 function Cloths() {
   const [alert, setAlert] = useState({ message: "", visible: false });
-  const [sortType, setSortType] = useState("");
-  const [filterCategory, setFilterCategory] = useState("All");
+  const [sortOption, setSortOption] = useState("");
+  const [filterCategory, setFilterCategory] = useState("");
 
   const { addToCart } = useCart();
 
@@ -83,80 +83,68 @@ function Cloths() {
     },
   ];
 
-  const sortedFilteredProducts = products
-    .filter((product) =>
-      filterCategory === "All" ? true : product.category === filterCategory
-    )
-    .sort((a, b) => {
-      if (sortType === "lowToHigh") return a.price - b.price;
-      if (sortType === "highToLow") return b.price - a.price;
-      return 0;
-    });
+  let filteredProducts = [...products];
+
+  if (filterCategory) {
+    filteredProducts = filteredProducts.filter(
+      (product) => product.category === filterCategory
+    );
+  }
+
+  if (sortOption === "low-to-high") {
+    filteredProducts.sort((a, b) => a.price - b.price);
+  } else if (sortOption === "high-to-low") {
+    filteredProducts.sort((a, b) => b.price - a.price);
+  }
 
   return (
-    <>
-      <div className="cloths-wrapper">
+    <div className="cloths-wrapper">
+      <div className="cloths-header-with-controls">
         <div className="cloths-header">
           <h1>Fashion Section</h1>
           <p>Explore our latest clothing collection!</p>
         </div>
 
-        <div className="content-container">
-          <aside className="sidebar">
-            <h3>Sort By</h3>
-            <button onClick={() => setSortType("lowToHigh")}>
-              Price: Low to High
-            </button>
-            <button onClick={() => setSortType("highToLow")}>
-              Price: High to Low
-            </button>
+        <div className="dropdown-controls">
+          <select onChange={(e) => setSortOption(e.target.value)} value={sortOption}>
+            <option value="">Sort By</option>
+            <option value="low-to-high">Price: Low to High</option>
+            <option value="high-to-low">Price: High to Low</option>
+          </select>
 
-            <h3>Filter By Category</h3>
-            <button onClick={() => setFilterCategory("All")}>All</button>
-            <button onClick={() => setFilterCategory("Male")}>
-              Men's Fashion
-            </button>
-            <button onClick={() => setFilterCategory("Female")}>
-              Women's Fashion
-            </button>
-          </aside>
+          <select onChange={(e) => setFilterCategory(e.target.value)} value={filterCategory}>
+            <option value="">Filter By</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+          </select>
+        </div>
+      </div>
 
-          <div className="products-container">
-            {sortedFilteredProducts.map((product, i) => (
-              <div key={i} className="product-card">
-                <img src={product.img} alt={product.name} />
-                <h3>{product.name}</h3>
-                <p className="price">₹{product.price}</p>
-                <p className="sizes">Sizes: {product.sizes.join(", ")}</p>
-                <div className="buttons">
-                  <button
-                    className="add-to-cart"
-                    onClick={() => handleAddToCart(product)}
-                  >
-                    Add to cart
-                  </button>
-                  <button
-                    className="wishlist-btn"
-                    onClick={() => handleAddToWishlist(product.name)}
-                  >
-                    ❤
-                  </button>
-                </div>
-              </div>
-            ))}
+      <div className={`custom-alert${alert.visible ? " show" : ""}`}>
+        {alert.message}
+      </div>
+
+      <div className="products-container">
+        {filteredProducts.map((product, idx) => (
+          <div className="product-card" key={idx}>
+            <img src={product.img} alt={product.name} />
+            <h3>{product.name}</h3>
+            <div className="price">₹{product.price}</div>
+            <div className="sizes">Sizes: {product.sizes.join(", ")}</div>
+            <div className="buttons">
+              <button className="add-to-cart" onClick={() => handleAddToCart(product)}>
+                Add to Cart
+              </button>
+              <button className="wishlist-btn" onClick={() => handleAddToWishlist(product.name)}>
+                ♥
+              </button>
+            </div>
           </div>
-        </div>
-
-        <div className={`custom-alert ${alert.visible ? "show" : ""}`}>
-          {alert.message}
-        </div>
+        ))}
       </div>
 
-      {/* ✅ Full-width footer outside main wrapper */}
-      <div className="footer-fullwidth">
-        <Footer />
-      </div>
-    </>
+      <Footer />
+    </div>
   );
 }
 
