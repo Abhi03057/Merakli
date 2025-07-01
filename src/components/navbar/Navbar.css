@@ -226,24 +226,35 @@
   }
 }
 
-/* Username button styling */
+/* Username button – override inherited round styles */
 .username-btn {
-  background-color: #fff;
-  color: #eb5e28;
-  padding: 8px 18px;
-  border: 2px solid #fff;
-  border-radius: 25px;
-  font-family: "SUSE";
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: default;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  background-color: #252422;
+  color: #ffffff;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  font-family: "SUSE", sans-serif;
+  display: inline-block;
+  line-height: 1.4;
+  min-width: auto;
+  min-height: auto;
+  box-shadow: none;
 }
 
 .username-btn:hover {
   background-color: #ccc5b9;
   color: #252422;
 }
+
+/* Remove previously inherited styles */
+.menu-item .username-btn,
+.nav-btn .username-btn {
+  all: unset;
+}
+
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
@@ -297,4 +308,49 @@
   padding: 10px 16px;
   cursor: pointer;
   width: 100%;
+}
+/* Clean username button styling */
+.username-btn {
+  background-color: #252422;
+  color: #ccc5b9;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  font-family: "SUSE", sans-serif;
+  cursor: pointer;
+  border: none;
+  display: inline-block;
+  box-shadow: none;
+  min-width: auto;
+  min-height: auto;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* On hover */
+.username-btn:hover {
+  background-color: #ccc5b9;
+  color: #252422;
+}
+
+/* Prevent inherited button shape from other classes */
+.dropdown-parent .username-btn,
+.menu-item .username-btn,
+.nav-btn .username-btn {
+  all: unset;
+  background-color: #252422;
+  color: #ffffff;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  font-family: "SUSE", sans-serif;
+  cursor: pointer;
+  display: inline-block;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dropdown-parent .username-btn:hover {
+  background-color: #ccc5b9;
+  color: #252422;
 }

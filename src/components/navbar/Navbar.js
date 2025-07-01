@@ -36,51 +36,34 @@ function Navbar() {
 
           <ul className="menu">
             {/* LOGIN/USERNAME DROPDOWN */}
-            <li className="menu-item dropdown-parent">
-              {user ? (
-                <>
-                  <button className="nav-btn username-btn">
-                    {user.displayName || user.email.split('@')[0]}
-                  </button>
-                  <ul className="dropdown">
-                    <li>
-                      <Link to="/cart">Your Orders</Link>
-                    </li>
-                    <li>
-                      <button onClick={handleLogout} className="nav-btn dropdown-link">
-                        Logout
-                      </button>
-                    </li>
-                  </ul>
-                </>
-              ) : (
-                <>
-                  <button className="nav-btn">
-                    <i className="fa-solid fa-user icon-style"></i>
-                  </button>
-                  <ul className="dropdown">
-                    <li>
-                      <Link to="/auth">New Customer? Sign Up</Link>
-                    </li>
-                    <li>
-                      <Link to="/cart">Your Orders</Link>
-                    </li>
-                    <li>
-                      <button className="nav-btn dropdown-link">Profile</button>
-                    </li>
-                    <li>
-                      <button className="nav-btn dropdown-link">Wishlist</button>
-                    </li>
-                    <li>
-                      <button className="nav-btn dropdown-link">Rewards</button>
-                    </li>
-                    <li>
-                      <button className="nav-btn dropdown-link">Coupons</button>
-                    </li>
-                  </ul>
-                </>
-              )}
-            </li>
+           <li className="dropdown-parent">
+  {user ? (
+    <>
+      <button className="username-btn">
+        {user.displayName || user.email.split('@')[0]}
+      </button>
+      <ul className="dropdown">
+        <li><Link to="/cart">Your Orders</Link></li>
+        <li><button onClick={handleLogout} className="dropdown-link">Logout</button></li>
+      </ul>
+    </>
+  ) : (
+    <>
+      <button className="nav-btn">
+        <i className="fa-solid fa-user icon-style"></i>
+      </button>
+      <ul className="dropdown">
+        <li><Link to="/auth">New Customer? Sign Up</Link></li>
+        <li><Link to="/cart">Your Orders</Link></li>
+        <li><button className="dropdown-link">Profile</button></li>
+        <li><button className="dropdown-link">Wishlist</button></li>
+        <li><button className="dropdown-link">Rewards</button></li>
+        <li><button className="dropdown-link">Coupons</button></li>
+      </ul>
+    </>
+  )}
+</li>
+
 
             {/* CART */}
             <li>
