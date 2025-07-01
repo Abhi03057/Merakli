@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "../Clothing/Cloths/Cloths.css";
-import "./Home.css";
 import { useCart } from "../Cart/CartContext";
 import Footer from "../Homepage/Footer/Footer";
 
@@ -76,47 +75,49 @@ function Home() {
   return (
     <>
       <div className="cloths-wrapper">
-        <div className="cloths-header">
-          <h1>Home & Furniture</h1>
-          <p>Furniture and more for your perfect home!</p>
-        </div>
+        <div className="cloths-header-with-controls">
+          <div className="cloths-header">
+            <h1>Home & Furniture</h1>
+            <p>Furniture and more for your perfect home!</p>
+          </div>
+          <div className="dropdown-controls">
+            <select onChange={(e) => setSortOrder(e.target.value)} value={sortOrder}>
+              <option value="">Sort By</option>
+              <option value="low-to-high">Price: Low to High</option>
+              <option value="high-to-low">Price: High to Low</option>
+            </select>
 
-        <div className="content">
-          <aside className="sidebar">
-            <h3>Sort by Price</h3>
-            <button onClick={() => setSortOrder("low-to-high")}>Low to High</button>
-            <button onClick={() => setSortOrder("high-to-low")}>High to Low</button>
-
-            <h3>Filter by Brand</h3>
             <select onChange={(e) => setBrandFilter(e.target.value)} value={brandFilter}>
               <option value="">All Brands</option>
               {uniqueBrands.map((brand, i) => (
-                <option key={i} value={brand}>{brand}</option>
+                <option key={i} value={brand}>
+                  {brand}
+                </option>
               ))}
             </select>
-          </aside>
-
-          <div className="products-container">
-            {sortedProducts.map((product, index) => (
-              <div key={index} className="product-card">
-                <img src={product.img} alt={product.name} />
-                <h3>{product.name}</h3>
-                <p className="price">₹{product.price.toLocaleString()}</p>
-                <div className="buttons">
-                  <button className="add-to-cart" onClick={() => handleAddToCart(product)}>
-                    Add to cart
-                  </button>
-                  <button
-                    className="wishlist-btn"
-                    onClick={() => handleAddToWishlist(product.name)}
-                    aria-label="Add to wishlist"
-                  >
-                    ❤
-                  </button>
-                </div>
-              </div>
-            ))}
           </div>
+        </div>
+
+        <div className="products-container">
+          {sortedProducts.map((product, index) => (
+            <div key={index} className="product-card">
+              <img src={product.img} alt={product.name} />
+              <h3>{product.name}</h3>
+              <p className="price">₹{product.price.toLocaleString()}</p>
+              <div className="buttons">
+                <button className="add-to-cart" onClick={() => handleAddToCart(product)}>
+                  Add to cart
+                </button>
+                <button
+                  className="wishlist-btn"
+                  onClick={() => handleAddToWishlist(product.name)}
+                  aria-label="Add to wishlist"
+                >
+                  ❤
+                </button>
+              </div>
+            </div>
+          ))}
         </div>
 
         <div className={`custom-alert ${alert.visible ? "show" : ""}`}>

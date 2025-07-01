@@ -53,22 +53,23 @@ function Groceries() {
     setTimeout(() => setAlert({ message: "", visible: false }), 3000);
   };
 
-  const handleSort = (type) => {
+  const handleSort = (e) => {
+    const type = e.target.value;
     const sorted = [...items];
-    if (type === "low-to-high") {
-      sorted.sort((a, b) => a.price - b.price);
-    } else if (type === "high-to-low") {
-      sorted.sort((a, b) => b.price - a.price);
-    }
+    if (type === "low-to-high") sorted.sort((a, b) => a.price - b.price);
+    else if (type === "high-to-low") sorted.sort((a, b) => b.price - a.price);
     setItems(sorted);
   };
 
-  const handleFilter = (category) => {
-    const filtered = initialItems.filter((item) => item.category === category);
-    setItems(filtered);
+  const handleFilter = (e) => {
+    const category = e.target.value;
+    if (category === "") {
+      setItems(initialItems);
+    } else {
+      const filtered = initialItems.filter((item) => item.category === category);
+      setItems(filtered);
+    }
   };
-
-  const resetFilter = () => setItems(initialItems);
 
   const handleAddToCart = (item) => {
     addToCart(item);
@@ -82,43 +83,49 @@ function Groceries() {
   return (
     <>
       <div className="cloths-wrapper">
-        <div className="cloths-header">
-          <h1>Grocery Essentials</h1>
-          <p>Shop daily needs at unbeatable prices.</p>
+        <div className="cloths-header-with-controls">
+          <div className="cloths-header">
+            <h1>Grocery Essentials</h1>
+            <p>Shop daily needs at unbeatable prices.</p>
+          </div>
+          <div className="dropdown-controls">
+            <select onChange={handleSort} defaultValue="">
+              <option value="">Sort By</option>
+              <option value="low-to-high">Price: Low to High</option>
+              <option value="high-to-low">Price: High to Low</option>
+            </select>
+
+            <select onChange={handleFilter} defaultValue="">
+              <option value="">Filter by Category</option>
+              <option value="Grains">Grains</option>
+              <option value="Flour">Flour</option>
+              <option value="Spices">Spices</option>
+              <option value="Dairy">Dairy</option>
+              <option value="Beverages">Beverages</option>
+            </select>
+          </div>
         </div>
 
-        <div className="content-container">
-          <aside className="sidebar">
-            <h3>Sort By</h3>
-            <button onClick={() => handleSort("low-to-high")}>Price: Low to High</button>
-            <button onClick={() => handleSort("high-to-low")}>Price: High to Low</button>
-
-            <h3>Filter By Category</h3>
-            <button onClick={() => handleFilter("Grains")}>Grains</button>
-            <button onClick={() => handleFilter("Flour")}>Flour</button>
-            <button onClick={() => handleFilter("Spices")}>Spices</button>
-            <button onClick={() => handleFilter("Dairy")}>Dairy</button>
-            <button onClick={() => handleFilter("Beverages")}>Beverages</button>
-            <button onClick={resetFilter}>Show All</button>
-          </aside>
-
-          <div className="products-container">
-            {items.map((item, idx) => (
-              <div className="product-card" key={idx}>
-                <img src={item.img} alt={item.name} />
-                <h3>{item.name}</h3>
-                <p className="price">₹{item.price.toLocaleString()}</p>
-                <div className="buttons">
-                  <button className="add-to-cart" onClick={() => handleAddToCart(item)}>
-                    Add to Cart
-                  </button>
-                  <button className="wishlist-btn" onClick={() => handleAddToWishlist(item.name)}>
-                    ❤
-                  </button>
-                </div>
+        <div className="products-container">
+          {items.map((item, idx) => (
+            <div className="product-card" key={idx}>
+              <img src={item.img} alt={item.name} />
+              <h3>{item.name}</h3>
+              <p className="price">₹{item.price.toLocaleString()}</p>
+              <div className="buttons">
+                <button className="add-to-cart" onClick={() => handleAddToCart(item)}>
+                  Add to Cart
+                </button>
+                <button
+                  className="wishlist-btn"
+                  onClick={() => handleAddToWishlist(item.name)}
+                  title="Add to Wishlist"
+                >
+                  ❤
+                </button>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
 
         <div className={`custom-alert ${alert.visible ? "show" : ""}`}>
@@ -126,7 +133,6 @@ function Groceries() {
         </div>
       </div>
 
-      {/* Footer is OUTSIDE the grocery content */}
       <div className="footer-fullwidth">
         <Footer />
       </div>

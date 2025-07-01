@@ -39,7 +39,7 @@ function Footer() {
       </div>
 
       <div className="footer-bottom">
-        <p>No Rights reserved. Made by Abhyuday Singh Panwar.</p>
+        <p>All Rights reserved. Made by Abhyuday Singh Panwar.</p>
         <div className="social-icons">
           <a href="https://www.instagram.com/ab_pan07/" target="_blank" rel="noopener noreferrer"><FaInstagram /></a>
           <a href="https://www.linkedin.com/in/abhyuday-panwar-9579b2289/" target="_blank" rel="noopener noreferrer"><FaLinkedin /></a>

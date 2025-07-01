@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "../Clothing/Cloths/Cloths.css";
-import "./Electronics.css";
+
 import { useCart } from "../Cart/CartContext";
 import Footer from "../Homepage/Footer/Footer";
 
@@ -81,21 +81,18 @@ function Electronics() {
   return (
     <>
       <div className="cloths-wrapper">
-        <div className="cloths-header">
-          <h1>Electronics</h1>
-          <p>Top gadgets and devices for your digital life!</p>
-        </div>
-
-        <div className="content-container">
-          <aside className="sidebar">
-            <h3>Sort By</h3>
+        <div className="cloths-header-with-controls">
+          <div className="cloths-header">
+            <h1>Electronics</h1>
+            <p>Top gadgets and devices for your digital life!</p>
+          </div>
+          <div className="dropdown-controls">
             <select onChange={(e) => setSortOption(e.target.value)} value={sortOption}>
-              <option value="">Select</option>
+              <option value="">Sort By</option>
               <option value="low-to-high">Price: Low to High</option>
               <option value="high-to-low">Price: High to Low</option>
             </select>
 
-            <h3>Filter By Brand</h3>
             <select onChange={(e) => setBrandFilter(e.target.value)} value={brandFilter}>
               <option value="">All Brands</option>
               {brands.map((brand, index) => (
@@ -104,25 +101,25 @@ function Electronics() {
                 </option>
               ))}
             </select>
-          </aside>
-
-          <div className="products-container">
-            {filteredProducts.map((product, index) => (
-              <div key={index} className="product-card">
-                <img src={product.img} alt={product.name} />
-                <h3>{product.name}</h3>
-                <p className="price">₹{product.price.toLocaleString()}</p>
-                <div className="buttons">
-                  <button className="add-to-cart" onClick={() => handleAddToCart(product)}>
-                    Add to cart
-                  </button>
-                  <button className="wishlist-btn" onClick={() => handleAddToWishlist(product.name)}>
-                    ❤
-                  </button>
-                </div>
-              </div>
-            ))}
           </div>
+        </div>
+
+        <div className="products-container">
+          {filteredProducts.map((product, index) => (
+            <div key={index} className="product-card">
+              <img src={product.img} alt={product.name} />
+              <h3>{product.name}</h3>
+              <p className="price">₹{product.price.toLocaleString()}</p>
+              <div className="buttons">
+                <button className="add-to-cart" onClick={() => handleAddToCart(product)}>
+                  Add to cart
+                </button>
+                <button className="wishlist-btn" onClick={() => handleAddToWishlist(product.name)}>
+                  ❤
+                </button>
+              </div>
+            </div>
+          ))}
         </div>
 
         <div className={`custom-alert ${alert.visible ? "show" : ""}`}>
