@@ -87,12 +87,12 @@
 }
 
 /* Dropdown parent */
-.menu-item {
+.dropdown-parent {
   position: relative;
   display: inline-block;
 }
 
-/* Dropdown content */
+/* Dropdown content - UPDATED FOR CLICK FUNCTIONALITY */
 .dropdown {
   display: none;
   position: absolute;
@@ -105,10 +105,27 @@
   min-width: 200px;
   font-family: "SUSE";
   padding: 0;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+}
+
+/* Show dropdown when .show class is added */
+.dropdown.show {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Keep hover functionality as backup */
+.dropdown-parent:hover .dropdown {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .dropdown li {
-  padding: 10px 16px;
+  padding: 0;
   border-bottom: 1px solid #eee;
   color: #333;
   cursor: pointer;
@@ -124,20 +141,19 @@
 }
 
 .dropdown li a {
-  display: flex;
-  align-items: center;
-  padding: 10px 16px;
+  display: block;
+  padding: 12px 16px;
   color: #333;
   text-decoration: none;
   font-size: 0.95rem;
   font-family: "SUSE";
   width: 100%;
+  box-sizing: border-box;
 }
 
-
-/* Show dropdown on hover */
-.dropdown-parent:hover .dropdown {
-  display: block;
+.dropdown li a:hover {
+  background-color: #f5f5f5;
+  color: #000;
 }
 
 /* Remove underline on links */
@@ -151,6 +167,46 @@
   display: flex;
   align-items: center;
   gap: 12px;
+}
+
+/* Username button styling */
+.username-btn {
+  background-color: #252422;
+  color: #ccc5b9;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  font-family: "SUSE", sans-serif;
+  cursor: pointer;
+  border: none;
+  display: inline-block;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.username-btn:hover {
+  background-color: #ccc5b9;
+  color: #252422;
+}
+
+/* Dropdown button styling */
+.dropdown-link {
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: left;
+  font-family: "SUSE";
+  font-size: 0.95rem;
+  color: #333;
+  padding: 12px 16px;
+  cursor: pointer;
+  display: block;
+  box-sizing: border-box;
+}
+
+.dropdown-link:hover {
+  background-color: #f5f5f5;
+  color: #000;
 }
 
 /* ===================== */
@@ -197,6 +253,11 @@
     height: 45px;
     padding: 0;
   }
+
+  .username-btn {
+    font-size: 0.9rem;
+    padding: 6px 14px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -224,133 +285,9 @@
   .icon-style {
     font-size: 1rem;
   }
-}
 
-/* Username button – override inherited round styles */
-.username-btn {
-  background-color: #252422;
-  color: #ffffff;
-  padding: 8px 16px;
-  border-radius: 6px;
-  font-size: 0.95rem;
-  font-weight: 500;
-  border: none;
-  cursor: pointer;
-  font-family: "SUSE", sans-serif;
-  display: inline-block;
-  line-height: 1.4;
-  min-width: auto;
-  min-height: auto;
-  box-shadow: none;
-}
-
-.username-btn:hover {
-  background-color: #ccc5b9;
-  color: #252422;
-}
-
-/* Remove previously inherited styles */
-.menu-item .username-btn,
-.nav-btn .username-btn {
-  all: unset;
-}
-
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .username-btn {
-    font-size: 0.9rem;
-    padding: 6px 14px;
-  }
-}
-
-@media (max-width: 480px) {
   .username-btn {
     font-size: 0.85rem;
     padding: 6px 12px;
   }
-}
-.username-btn {
-  border-radius: 20px !important;
-  padding: 8px 16px !important;
-  min-width: unset !important;
-}
-
-/* Override dropdown button look to match anchor links */
-.dropdown li button {
-  all: unset;
-  width: 100%;
-  font-family: "SUSE";
-  font-size: 0.95rem;
-  color: #333;
-  padding: 10px 16px;
-  cursor: pointer;
-  display: flex;            /* Flexbox to center text */
-  align-items: center;      /* Vertically center */
-  line-height: 1.4; 
-  text-align: center;        /* Ensures better vertical spacing */
-}
-
-/* Hover effect (same as <a>) */
-.dropdown li button:hover {
-  background-color: #f5f5f5;
-  color: #000;
-}
-
-/* Remove rounded/oval button styles */
-.dropdown-link,
-.username-btn {
-  all: unset;
-  display: block;
-  font-family: "SUSE";
-  color: #333;
-  font-size: 0.95rem;
-  padding: 10px 16px;
-  cursor: pointer;
-  width: 100%;
-}
-/* Clean username button styling */
-.username-btn {
-  background-color: #252422;
-  color: #ccc5b9;
-  padding: 8px 16px;
-  border-radius: 6px;
-  font-size: 0.95rem;
-  font-weight: 500;
-  font-family: "SUSE", sans-serif;
-  cursor: pointer;
-  border: none;
-  display: inline-block;
-  box-shadow: none;
-  min-width: auto;
-  min-height: auto;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-/* On hover */
-.username-btn:hover {
-  background-color: #ccc5b9;
-  color: #252422;
-}
-
-/* Prevent inherited button shape from other classes */
-.dropdown-parent .username-btn,
-.menu-item .username-btn,
-.nav-btn .username-btn {
-  all: unset;
-  background-color: #252422;
-  color: #ffffff;
-  padding: 8px 16px;
-  border-radius: 6px;
-  font-size: 0.95rem;
-  font-weight: 500;
-  font-family: "SUSE", sans-serif;
-  cursor: pointer;
-  display: inline-block;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.dropdown-parent .username-btn:hover {
-  background-color: #ccc5b9;
-  color: #252422;
 }

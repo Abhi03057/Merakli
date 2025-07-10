@@ -1,16 +1,41 @@
 // src/Cart/Cart.js
-import React from 'react';
+import React, { useState } from 'react';
 import './Cart.css';
 import { useCart } from './CartContext';
+import { useAuth } from '../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 import Footer from '../Homepage/Footer/Footer';
 
 function Cart() {
   const { cartItems, updateQuantity, removeFromCart } = useCart();
+  const { user } = useAuth();
+  const navigate = useNavigate();
+  const [showLoginPopup, setShowLoginPopup] = useState(false);
 
   const totalAmount = cartItems.reduce(
     (acc, item) => acc + item.price * item.quantity,
     0
   );
+
+  const handleCheckout = () => {
+    if (!user) {
+      // Show custom popup instead of alert
+      setShowLoginPopup(true);
+      return;
+    }
+    
+    // If user is logged in, navigate to checkout page
+    navigate('/checkout');
+  };
+
+  const handleLoginRedirect = () => {
+    setShowLoginPopup(false);
+    navigate('/auth');
+  };
+
+  const handleClosePopup = () => {
+    setShowLoginPopup(false);
+  };
 
   return (
     <div className="cart-page">
@@ -60,11 +85,39 @@ function Cart() {
             </div>
             <div className="cart-summary-right">
               <h3>Total: ₹{totalAmount.toLocaleString()}</h3>
-              <button className="checkout-btn">Checkout</button>
+              <button className="checkout-btn" onClick={handleCheckout}>
+                Checkout
+              </button>
             </div>
           </>
         )}
       </div>
+
+      {/* Custom Login Popup */}
+      {showLoginPopup && (
+        <div className="popup-overlay" onClick={handleClosePopup}>
+          <div className="popup-content" onClick={(e) => e.stopPropagation()}>
+            <div className="popup-header">
+              <h3>Login Required</h3>
+              <button className="popup-close" onClick={handleClosePopup}>
+                ×
+              </button>
+            </div>
+            <div className="popup-body">
+              <p>Please log in to your account to proceed with checkout and complete your purchase.</p>
+            </div>
+            <div className="popup-footer">
+              <button className="popup-btn secondary" onClick={handleClosePopup}>
+                Cancel
+              </button>
+              <button className="popup-btn primary" onClick={handleLoginRedirect}>
+                Login
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       <Footer />
     </div>
   );

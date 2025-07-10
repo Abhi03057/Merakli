@@ -21,35 +21,41 @@ function Auth() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log("🚀 Login form submitted");
 
     try {
       if (isSignUp) {
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-        console.log('User signed up:', userCredential.user);
+        console.log('✅ User signed up:', userCredential.user);
       } else {
         const userCredential = await signInWithEmailAndPassword(auth, email, password);
-        console.log('User signed in:', userCredential.user);
+        console.log('✅ User signed in:', userCredential.user);
       }
 
       navigate('/');
     } catch (error) {
-      console.error('Auth error:', error.message);
+      console.error('❌ Auth error:', error.message);
       alert(error.message);
     }
   };
 
   const handleGoogleSignIn = async () => {
+    console.log("🌐 Google sign-in clicked");
+
     const provider = new GoogleAuthProvider();
     try {
       const result = await signInWithPopup(auth, provider);
-      console.log('Google sign-in success:', result.user);
+      console.log('✅ Google sign-in success:', result.user);
       alert('Logged in with Google: ' + result.user.email);
       navigate('/');
     } catch (error) {
-      console.error('Google sign-in error:', error.message);
+      console.error('❌ Google sign-in error:', error.message);
       alert('Google sign-in failed: ' + error.message);
     }
   };
+
+  // Debug print for Firebase auth object
+  console.log("🛠️ Firebase auth object:", auth);
 
   return (
     <div className="cloths-wrapper auth-wrapper">

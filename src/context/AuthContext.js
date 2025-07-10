@@ -1,29 +1,31 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { app } from "../firebase"; 
+// src/context/AuthContext.js
+import React, { useContext, useState, useEffect, createContext } from 'react';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
 
 // Create context
 const AuthContext = createContext();
 
-// Custom hook to use auth context
-export const useAuth = () => useContext(AuthContext);
-
 // Provider component
-export const AuthProvider = ({ children }) => {
+export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
-  const auth = getAuth(app);
+  const [loading, setLoading] = useState(true); // Optional: To prevent flicker on first load
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
-      setUser(firebaseUser); // null if logged out, user object if signed in
+    const auth = getAuth();
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+      setLoading(false);
     });
 
-    return () => unsubscribe(); // cleanup listener on unmount
-  }, [auth]);
+    return () => unsubscribe();
+  }, []);
 
   return (
     <AuthContext.Provider value={{ user }}>
-      {children}
+      {!loading && children}
     </AuthContext.Provider>
   );
-};
+}
+
+// Hook to use in components
+export const useAuth = () => useContext(AuthContext);

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import './Navbar.css';
 import { useAuth } from '../../context/AuthContext';
@@ -6,17 +6,38 @@ import { getAuth, signOut } from 'firebase/auth';
 
 function Navbar() {
   const { user } = useAuth();
+  const [showDropdown, setShowDropdown] = useState(false);
+  const dropdownRef = useRef(null);
 
   const handleLogout = () => {
     const auth = getAuth();
     signOut(auth)
       .then(() => {
         console.log("User logged out");
+        setShowDropdown(false); // Close dropdown after logout
       })
       .catch((error) => {
         console.error("Logout error:", error);
       });
   };
+
+  const toggleDropdown = () => {
+    setShowDropdown(!showDropdown);
+  };
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setShowDropdown(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   return (
     <div>
@@ -36,34 +57,33 @@ function Navbar() {
 
           <ul className="menu">
             {/* LOGIN/USERNAME DROPDOWN */}
-           <li className="dropdown-parent">
-  {user ? (
-    <>
-      <button className="username-btn">
-        {user.displayName || user.email.split('@')[0]}
-      </button>
-      <ul className="dropdown">
-        <li><Link to="/cart">Your Orders</Link></li>
-        <li><button onClick={handleLogout} className="dropdown-link">Logout</button></li>
-      </ul>
-    </>
-  ) : (
-    <>
-      <button className="nav-btn">
-        <i className="fa-solid fa-user icon-style"></i>
-      </button>
-      <ul className="dropdown">
-        <li><Link to="/auth">New Customer? Sign Up</Link></li>
-        <li><Link to="/cart">Your Orders</Link></li>
-        <li><button className="dropdown-link">Profile</button></li>
-        <li><button className="dropdown-link">Wishlist</button></li>
-        <li><button className="dropdown-link">Rewards</button></li>
-        <li><button className="dropdown-link">Coupons</button></li>
-      </ul>
-    </>
-  )}
-</li>
-
+            <li className="dropdown-parent" ref={dropdownRef}>
+              {user ? (
+                <>
+                  <button className="username-btn" onClick={toggleDropdown}>
+                    {user.displayName || user.email.split('@')[0]}
+                  </button>
+                  <ul className={`dropdown ${showDropdown ? 'show' : ''}`}>
+                    <li><Link to="/cart" onClick={() => setShowDropdown(false)}>Your Orders</Link></li>
+                    <li><button onClick={handleLogout} className="dropdown-link">Logout</button></li>
+                  </ul>
+                </>
+              ) : (
+                <>
+                  <button className="nav-btn" onClick={toggleDropdown}>
+                    <i className="fa-solid fa-user icon-style"></i>
+                  </button>
+                  <ul className={`dropdown ${showDropdown ? 'show' : ''}`}>
+                    <li><Link to="/auth" onClick={() => setShowDropdown(false)}>New Customer? Sign Up</Link></li>
+                    <li><Link to="/cart" onClick={() => setShowDropdown(false)}>Your Orders</Link></li>
+                    <li><button className="dropdown-link" onClick={() => setShowDropdown(false)}>Profile</button></li>
+                    <li><button className="dropdown-link" onClick={() => setShowDropdown(false)}>Wishlist</button></li>
+                    <li><button className="dropdown-link" onClick={() => setShowDropdown(false)}>Rewards</button></li>
+                    <li><button className="dropdown-link" onClick={() => setShowDropdown(false)}>Coupons</button></li>
+                  </ul>
+                </>
+              )}
+            </li>
 
             {/* CART */}
             <li>

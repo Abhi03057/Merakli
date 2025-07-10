@@ -6,8 +6,14 @@ import Footer from "../Homepage/Footer/Footer";
 function Appliances() {
   const [sortOrder, setSortOrder] = useState("");
   const [brandFilter, setBrandFilter] = useState("");
+  const [alert, setAlert] = useState({ message: "", visible: false });
 
   const { addToCart } = useCart();
+
+  const showAlert = (message) => {
+    setAlert({ message, visible: true });
+    setTimeout(() => setAlert({ message: "", visible: false }), 3000);
+  };
 
   const products = [
     {
@@ -50,10 +56,11 @@ function Appliances() {
 
   const handleAddToCart = (product) => {
     addToCart(product);
+    showAlert(`"${product.name}" added to cart!`);
   };
 
   const handleAddToWishlist = (name) => {
-    alert(`"${name}" added to wishlist!`);
+    showAlert(`"${name}" added to wishlist!`);
   };
 
   const sortedProducts = [...products]
@@ -112,6 +119,10 @@ function Appliances() {
               </div>
             </div>
           ))}
+        </div>
+
+        <div className={`custom-alert ${alert.visible ? "show" : ""}`}>
+          {alert.message}
         </div>
       </div>
 
